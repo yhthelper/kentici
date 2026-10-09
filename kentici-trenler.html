@@ -1,0 +1,2260 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>KAM - Kentiçi Trenler</title><style>
+
+
+:root {
+  color-scheme: light;
+
+  --color-bg: #f4f6f8;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef1f4;
+  --color-surface-3: #e4e9ed;
+  --color-text: #11181f;
+  --color-text-muted: #5b6b78;
+  --color-border: rgba(17, 24, 31, 0.10);
+  --color-border-strong: rgba(17, 24, 31, 0.18);
+
+  --color-accent: #0f9d8e;
+  --color-accent-2: #3d5fe0;
+  --color-on-accent: #ffffff;
+
+  --color-success: #1f8a5f;
+  --color-success-bg: rgba(31, 138, 95, 0.10);
+  --color-success-border: rgba(31, 138, 95, 0.28);
+  --color-danger: #c22a4f;
+  --color-danger-bg: rgba(194, 42, 79, 0.10);
+  --color-danger-border: rgba(194, 42, 79, 0.28);
+  --color-warning: #a4650a;
+  --color-warning-bg: rgba(164, 101, 10, 0.10);
+  --color-warning-border: rgba(164, 101, 10, 0.28);
+  --color-info: #2f5fd6;
+  --color-info-bg: rgba(47, 95, 214, 0.10);
+  --color-info-border: rgba(47, 95, 214, 0.28);
+
+  --shadow-1: 0 1px 2px rgba(17, 24, 31, 0.06);
+  --shadow-2: 0 8px 24px rgba(17, 24, 31, 0.10);
+
+  --font-sans: "Space Grotesk", "Avenir Next", system-ui, -apple-system, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --nav-height: 64px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-bg: #080c10;
+    --color-surface: #0d1520;
+    --color-surface-2: #101a26;
+    --color-surface-3: #0a1018;
+    --color-text: #e9f0f2;
+    --color-text-muted: #8899a6;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-strong: rgba(255, 255, 255, 0.16);
+
+    --color-accent: #00e5c7;
+    --color-accent-2: #6c8fff;
+    --color-on-accent: #04120f;
+
+    --color-success: #34d399;
+    --color-success-bg: rgba(52, 211, 153, 0.12);
+    --color-success-border: rgba(52, 211, 153, 0.32);
+    --color-danger: #ff6b8a;
+    --color-danger-bg: rgba(255, 107, 138, 0.12);
+    --color-danger-border: rgba(255, 107, 138, 0.32);
+    --color-warning: #ffb020;
+    --color-warning-bg: rgba(255, 176, 32, 0.12);
+    --color-warning-border: rgba(255, 176, 32, 0.32);
+    --color-info: #6c8fff;
+    --color-info-bg: rgba(108, 143, 255, 0.12);
+    --color-info-border: rgba(108, 143, 255, 0.32);
+
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-2: 0 20px 48px rgba(2, 8, 14, 0.7);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #080c10;
+  --color-surface: #0d1520;
+  --color-surface-2: #101a26;
+  --color-surface-3: #0a1018;
+  --color-text: #e9f0f2;
+  --color-text-muted: #8899a6;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+
+  --color-accent: #00e5c7;
+  --color-accent-2: #6c8fff;
+  --color-on-accent: #04120f;
+
+  --color-success: #34d399;
+  --color-success-bg: rgba(52, 211, 153, 0.12);
+  --color-success-border: rgba(52, 211, 153, 0.32);
+  --color-danger: #ff6b8a;
+  --color-danger-bg: rgba(255, 107, 138, 0.12);
+  --color-danger-border: rgba(255, 107, 138, 0.32);
+  --color-warning: #ffb020;
+  --color-warning-bg: rgba(255, 176, 32, 0.12);
+  --color-warning-border: rgba(255, 176, 32, 0.32);
+  --color-info: #6c8fff;
+  --color-info-bg: rgba(108, 143, 255, 0.12);
+  --color-info-border: rgba(108, 143, 255, 0.32);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 20px 48px rgba(2, 8, 14, 0.7);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  padding-bottom: calc(var(--nav-height) + env(safe-area-inset-bottom) + 12px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a { color: var(--color-accent); }
+
+button, input, select {
+  font-family: inherit;
+  color: inherit;
+}
+
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.app-header h1 {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  background: linear-gradient(120deg, var(--color-accent), var(--color-accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+.app-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.panel-header h2 {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.panel-header p {
+  color: var(--color-text-muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0 0 16px 0;
+}
+
+
+.home-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 20px 0 10px;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.home-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  text-align: left;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-1);
+  min-height: 108px;
+}
+
+.home-card-icon { font-size: 24px; }
+.home-card-title { font-size: 14px; font-weight: 800; line-height: 1.25; }
+.home-card-sub { font-size: 12px; color: var(--color-text-muted); }
+
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  display: flex;
+  justify-content: safe center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.bottom-nav::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 74px;
+  min-height: var(--nav-height);
+  padding: 0 8px;
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 10.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nav-btn .nav-icon { font-size: 20px; }
+.nav-btn.active { color: var(--color-accent); }
+
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-1);
+}
+
+.grid { display: grid; gap: 16px; }
+
+.grid > *, .app-main > * { min-width: 0; }
+
+.controls {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.controls select,
+.controls input,
+select,
+input[type="search"],
+input[type="number"] {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  font-size: 15px;
+  outline: none;
+  width: 100%;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stat {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.table-wrap { overflow-x: auto; }
+.table-wrap.scroll-x { max-width: 100%; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.table th {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 380px) {
+  .table { font-size: 12px; }
+  .table th, .table td { padding: 8px 6px; }
+}
+
+.kv { display: grid; gap: 10px; }
+
+.kv-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-surface-2);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.kv-item span {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.kv-item div { font-size: 14px; font-weight: 700; text-align: right; }
+
+.center-title { text-align: center; }
+.center-table { text-align: center; }
+
+.subtitle { color: var(--color-text-muted); font-size: 13px; margin-bottom: 12px; }
+
+.source-note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 640px) {
+  .home-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+
+@media (min-width: 900px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+
+  .app-header { order: 0; }
+
+  .bottom-nav {
+    order: 1;
+    position: sticky;
+    top: 0;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    justify-content: safe center;
+    gap: 6px;
+    border-top: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: 8px 24px;
+  }
+
+  .nav-btn {
+    flex: 0 0 auto;
+    flex-direction: row;
+    min-height: 40px;
+    padding: 9px 20px;
+    border-radius: 999px;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  .nav-btn.active { background: var(--color-surface-2); }
+  .nav-btn .nav-icon { font-size: 16px; }
+
+  .app-main {
+    order: 2;
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 28px 32px 56px;
+  }
+
+  .home-grid { grid-template-columns: repeat(4, 1fr); }
+  .pet-summary { grid-template-columns: repeat(4, 1fr); }
+}
+
+
+.announce-card { padding: 0; overflow: hidden; }
+
+.announce-empty {
+  padding: 16px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.announce-item {
+  display: flex;
+  gap: 10px;
+  padding: 14px 16px;
+  border-left: 4px solid var(--color-border-strong);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.announce-item:last-child { border-bottom: none; }
+
+.announce-item.priority-acil { border-left-color: var(--color-danger); background: var(--color-danger-bg); }
+.announce-item.priority-uyari { border-left-color: var(--color-warning); background: var(--color-warning-bg); }
+.announce-item.priority-bilgi { border-left-color: var(--color-info); background: var(--color-info-bg); }
+
+.announce-body-wrap { flex: 1; min-width: 0; }
+
+.announce-top-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.announce-pin { font-size: 13px; }
+
+.announce-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.priority-acil .announce-badge { background: var(--color-danger); color: #fff; }
+.priority-uyari .announce-badge { background: var(--color-warning); color: #1a1200; }
+.priority-bilgi .announce-badge { background: var(--color-info); color: #fff; }
+
+.announce-title { font-size: 14px; font-weight: 800; }
+.announce-text { font-size: 13px; color: var(--color-text-muted); margin-top: 2px; white-space: pre-line; }
+
+.announce-text.is-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.announce-more-btn {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.announce-more-link {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-top: 1px solid var(--color-border);
+  background: none;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+
+.sched-widget {
+  background: var(--color-surface-2);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.sched-title {
+  font-size: 12px;
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sched-shuttle-note {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: -6px;
+  margin-bottom: 10px;
+  min-height: 14px;
+}
+
+.sched-next {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+.sched-next-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.75;
+  margin-bottom: 2px;
+}
+
+.sched-next-time { font-size: 22px; font-weight: 800; }
+.sched-next-remaining { font-size: 13px; opacity: 0.75; font-weight: 600; }
+
+.sched-ended {
+  background: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  color: var(--color-danger);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sched-firstlast {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.sched-firstlast-item {
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  text-align: center;
+}
+
+.sched-firstlast-label { font-size: 11px; color: var(--color-text-muted); margin-bottom: 4px; }
+.sched-firstlast-value { font-size: 20px; font-weight: 700; }
+.sched-firstlast-value.is-first { color: var(--color-accent); }
+.sched-firstlast-value.is-last { color: var(--color-accent-2); }
+
+.sched-last-variants { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.sched-last-variants .variant-row { display: flex; justify-content: center; align-items: baseline; gap: 5px; }
+.sched-last-variants .variant-time { font-size: 16px; font-weight: 700; }
+.sched-last-variants .variant-label { font-size: 10px; font-weight: 600; color: var(--color-text-muted); letter-spacing: 0.2px; }
+
+.sched-all-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 12px 0 8px;
+}
+
+.sched-all-label-sub {
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  text-transform: none;
+  opacity: 0.75;
+}
+
+.sched-shuttle-block { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--color-border); }
+
+.sched-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.sched-pill {
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  color: var(--color-text);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+.sched-pill.is-past {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.sched-pill.is-next {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border-color: var(--color-accent);
+  font-weight: 700;
+}
+
+.sched-empty { color: var(--color-text-muted); font-size: 13px; }
+
+
+.segmented[hidden] { display: none; }
+
+.segmented {
+  display: inline-flex;
+  background: var(--color-surface-2);
+  border-radius: 999px;
+  padding: 3px;
+  margin-bottom: 14px;
+  gap: 3px;
+}
+
+.segmented-btn {
+  border: none;
+  background: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.segmented-btn.active {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.segment-panel { display: none; }
+.segment-panel.active { display: block; }
+
+
+.numara-card { cursor: pointer; text-align: left; }
+.numara-label { font-size: 13px; font-weight: 700; color: var(--color-text-muted); margin-bottom: 4px; }
+.numara-desc { font-size: 12px; color: var(--color-text-muted); margin-bottom: 10px; }
+.numara-value { font-size: 20px; font-weight: 800; color: var(--color-accent); }
+.numara-card.copied .numara-value { color: var(--color-info); }
+
+
+.bildirim-list { display: flex; flex-direction: column; gap: 8px; }
+.bildirim-item {
+  text-align: left;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--color-text);
+  cursor: pointer;
+}
+.bildirim-item.copied { border-color: var(--color-accent); color: var(--color-accent); }
+
+
+.dogu-hero {
+  background: linear-gradient(135deg, var(--color-accent-2), var(--color-accent));
+  color: var(--color-on-accent);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.dogu-hero h2 { margin: 0 0 6px; color: var(--color-on-accent); }
+.dogu-hero p { margin: 0; font-size: 13px; opacity: 0.92; }
+
+
+.pet-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.pet-summary-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.pet-summary-item span { display: block; font-size: 11px; color: var(--color-text-muted); margin-bottom: 4px; }
+.pet-summary-item strong { font-size: 13px; }
+
+.rule-list { display: flex; flex-direction: column; gap: 14px; }
+.rule-row { display: flex; gap: 12px; align-items: flex-start; }
+
+.rule-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-accent);
+}
+
+.rule-row h4 { font-size: 14px; margin-bottom: 4px; }
+.rule-row p { font-size: 13px; color: var(--color-text-muted); line-height: 1.5; }
+
+
+.age-date-grid {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.date-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+}
+
+.date-field-icon { font-size: 22px; }
+.date-field-label { display: block; font-size: 12px; color: var(--color-text-muted); margin-bottom: 6px; font-weight: 600; }
+.date-select-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 6px; }
+.date-select-grid select { padding: 8px; font-size: 13px; }
+
+.yas-status-banner {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  font-size: 17px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.yas-status-banner.is-ok { background: var(--color-success-bg); color: var(--color-success); border: 1px solid var(--color-success-border); }
+.yas-status-banner.is-warn { background: var(--color-warning-bg); color: var(--color-warning); border: 1px solid var(--color-warning-border); }
+.yas-status-banner.is-danger { background: var(--color-danger-bg); color: var(--color-danger); border: 1px solid var(--color-danger-border); }
+.yas-status-banner.is-neutral { background: var(--color-surface-2); color: var(--color-text-muted); border: 1px solid var(--color-border); }
+
+.saat-esik { font-size: 12px; font-weight: 600; opacity: 0.85; margin-top: 4px; }
+
+.saat-kalan {
+  font-size: 32px;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.saat-kanal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin-top: 14px; }
+.saat-kanal-item { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 8px; background: var(--color-surface-2); border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; text-align: center; }
+
+.yas-fare-banner {
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 14px;
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.yas-fare-banner.is-highlight { background: var(--color-info-bg); color: var(--color-info); border-color: var(--color-info-border); }
+
+.yas-note { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.yas-note p { font-size: 13px; color: var(--color-text-muted); background: var(--color-surface-2); border-radius: var(--radius-sm); padding: 10px 12px; margin: 0; }
+
+
+.indirim-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  padding: 14px;
+}
+
+.indirim-row.tier-tam { border-left-color: var(--color-text-muted); }
+.indirim-row.tier-genc { border-left-color: var(--color-info); }
+.indirim-row.tier-cocuk { border-left-color: var(--color-success); }
+
+.indirim-row-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.indirim-row-label { font-size: 14px; font-weight: 800; }
+.indirim-row-tarife { font-size: 12px; color: var(--color-text-muted); margin-top: 2px; }
+.indirim-row-price { font-size: 24px; font-weight: 900; white-space: nowrap; }
+.tier-tam .indirim-row-price { color: var(--color-text); }
+.tier-genc .indirim-row-price { color: var(--color-info); }
+.tier-cocuk .indirim-row-price { color: var(--color-success); }
+
+.indirim-row-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+}
+
+.indirim-row-adet { display: flex; align-items: center; gap: 8px; }
+.indirim-row-adet-label { font-size: 11px; color: var(--color-text-muted); font-weight: 600; margin-right: 2px; }
+.indirim-row-ara { flex: 0 0 auto; margin-left: auto; text-align: right; font-size: 13px; font-weight: 700; color: var(--color-text-muted); min-height: 18px; white-space: nowrap; }
+
+.adet-input {
+  width: 48px;
+  text-align: center;
+  padding: 6px 4px;
+  font-weight: 700;
+}
+
+.adet-btn {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.adet-btn-plus { background: var(--color-accent); color: var(--color-on-accent); border-color: var(--color-accent); }
+
+.indirim-toplam {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 18px 20px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--color-info-bg), var(--color-danger-bg));
+  border: 1px solid var(--color-border-strong);
+}
+
+.indirim-toplam-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--color-text-muted); }
+.toplam-deger { font-size: 30px; font-weight: 900; color: var(--color-accent); }
+
+.indirim-degisiklik {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 16px 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
+}
+
+.indirim-degisiklik-label { font-size: 13px; font-weight: 800; color: var(--color-warning); }
+.degisiklik-deger { font-size: 22px; font-weight: 900; color: var(--color-warning); white-space: nowrap; }
+
+
+.gar-detail-card { padding: 0; overflow: hidden; }
+
+.gar-detail-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 14%, transparent), color-mix(in srgb, var(--color-accent-2) 10%, transparent));
+  border-bottom: 1px solid var(--color-border);
+}
+
+.gar-detail-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-surface);
+  font-size: 18px;
+}
+
+.gar-detail-name { font-size: 16px; font-weight: 800; line-height: 1.3; }
+.gar-detail-region { font-size: 12px; color: var(--color-text-muted); margin-top: 2px; }
+
+.gar-detail-body { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 18px; }
+.gar-detail-empty { padding: 20px; color: var(--color-text-muted); font-size: 13px; text-align: center; }
+
+.gar-section-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.gar-box-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gar-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+}
+
+.gar-box > span { font-size: 11px; font-weight: 600; color: var(--color-text-muted); line-height: 1.3; }
+.gar-box-value { font-size: 14px; font-weight: 700; }
+
+@media (min-width: 480px) {
+  .gar-box-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .gar-box-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.gar-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.gar-badge-ok { background: var(--color-success-bg); color: var(--color-success); border: 1px solid var(--color-success-border); }
+.gar-badge-no { background: var(--color-surface-2); color: var(--color-text-muted); border: 1px solid var(--color-border); }
+
+.gar-raw-table {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.gar-raw-table summary {
+  cursor: pointer;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  background: var(--color-surface-2);
+  list-style: none;
+}
+
+.gar-raw-table summary::-webkit-details-marker { display: none; }
+.gar-raw-table summary::before { content: '▸ '; }
+.gar-raw-table[open] summary::before { content: '▾ '; }
+
+.gar-raw-table .table-wrap { padding: 0; }
+
+
+.abonman-detail-title {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.price-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+}
+
+.price-box span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  line-height: 1.3;
+}
+
+.price-box strong {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--color-accent);
+}
+
+@media (min-width: 480px) {
+  .price-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .price-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+</style></head><body><header class="app-header"><h1>KAM</h1><button id="theme-toggle" class="theme-toggle" type="button">🌙 Koyu Mod</button></header><main class="app-main"><section id="screen-home" class="screen active"><div class="home-section-title">Hızlı Erişim</div><div class="home-grid"><button type="button" class="home-card" data-screen="kentici"><span class="home-card-icon">🚆</span><span class="home-card-title">Kentiçi Trenler</span><span class="home-card-sub">Marmaray, M11, Kazlıçeşme ve Başkentray</span></button></div></section><section id="screen-kentici" class="screen"><button type="button" class="back-btn" data-parent="home">← Geri</button><div class="panel-header"><div><h2>Kentiçi Trenler</h2><p>Sefer bilgilerini görüntülemek için bir hat seçin.</p></div></div><div class="home-grid"><button type="button" class="home-card" data-screen="marmaray"><span class="home-card-icon">🌊</span><span class="home-card-title">Marmaray</span><span class="home-card-sub">Halkalı–Gebze ilk/son seferler</span></button><button type="button" class="home-card" data-screen="m11"><span class="home-card-icon">✈️</span><span class="home-card-title">M11</span><span class="home-card-sub">Halkalı ve Gayrettepe yönleri</span></button><button type="button" class="home-card" data-screen="sirkeci-kazlicesme"><span class="home-card-icon">🚉</span><span class="home-card-title">Kazlıçeşme</span><span class="home-card-sub">Sirkeci–Kazlıçeşme seferleri</span></button><button type="button" class="home-card" data-screen="baskentray"><span class="home-card-icon">🚆</span><span class="home-card-title">Başkentray</span><span class="home-card-sub">Sincan ve Kayaş yönleri</span></button></div></section>    <section id="screen-marmaray" class="screen">
+      <button class="back-btn" data-parent="kentici">← Geri</button>
+      <div class="panel-header"><div><h2>Marmaray</h2><p>İlk ve son trenlerin istasyonlardan kalkış saatleri.</p></div></div>
+
+      <div class="segmented" hidden>
+        <button type="button" class="segmented-btn" data-target="mrm-segment-istasyon">🔍 İstasyon Sorgula</button>
+        <button type="button" class="segmented-btn active" data-target="mrm-segment-guzergah">🔍 Güzergah Sorgula</button>
+      </div>
+
+      <div id="mrm-segment-istasyon" class="segment-panel" hidden>
+        <section class="card">
+          <label style="display:block;font-size:12px;color:var(--color-text-muted);margin-bottom:6px;font-weight:600;">İSTASYON</label>
+          <select id="mrm-station"><option value="">— Seçin —</option></select>
+          <div id="mrm-result" style="margin-top:16px;display:none;"></div>
+        </section>
+      </div>
+
+      <div id="mrm-segment-guzergah" class="segment-panel active">
+        <section class="card">
+          <div class="grid" style="grid-template-columns:1fr 1fr;">
+            <label style="display:block;font-size:12px;color:var(--color-text-muted);margin-bottom:6px;font-weight:600;">
+              BİNİŞ İSTASYONU
+              <select id="mrm-v2-binis"><option value="">— Seçin —</option></select>
+            </label>
+            <label style="display:block;font-size:12px;color:var(--color-text-muted);margin-bottom:6px;font-weight:600;">
+              İNİŞ İSTASYONU
+              <select id="mrm-v2-inis"><option value="">— Seçin —</option></select>
+            </label>
+          </div>
+          <div id="mrm-v2-result" style="margin-top:16px;display:none;"></div>
+        </section>
+      </div>
+
+      <section class="card">
+        <h3 class="center-title" style="margin-bottom:12px;">HALKALI – GEBZE – HALKALI TRENLERİ</h3>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+          <div>
+            <h4 class="center-title" style="color:var(--color-accent);margin-bottom:8px;">HALKALI YÖNÜNE</h4>
+            <div class="table-wrap scroll-x"><table class="table" id="marmaray-halkali-table"></table></div>
+          </div>
+          <div>
+            <h4 class="center-title" style="color:var(--color-accent-2);margin-bottom:8px;">GEBZE YÖNÜNE</h4>
+            <div class="table-wrap scroll-x"><table class="table" id="marmaray-gebze-table"></table></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 class="center-title" style="margin-bottom:12px;">ATAKÖY–PENDİK–ATAKÖY TRENLERİ</h3>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+          <div>
+            <h4 class="center-title" style="color:var(--color-accent);margin-bottom:8px;">ATAKÖY YÖNÜNE</h4>
+            <div class="table-wrap scroll-x"><table class="table" id="marmaray-atakoy-table"></table></div>
+          </div>
+          <div>
+            <h4 class="center-title" style="color:var(--color-accent-2);margin-bottom:8px;">PENDİK YÖNÜNE</h4>
+            <div class="table-wrap scroll-x"><table class="table" id="marmaray-pendik-table"></table></div>
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <h4 class="center-title" style="color:var(--color-text-muted);margin-bottom:8px;">ZEYTİNBURNU YÖNÜNE (Son Tren)</h4>
+          <div class="table-wrap scroll-x"><table class="table" id="marmaray-zeytinburnu-table"></table></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3 style="margin-bottom:8px;">Bilgi Notu</h3>
+        <div class="kv">
+          <div class="kv-item"><span>Halkalı–Gebze–Halkalı</span><div>Her 15 dakikada bir tren</div></div>
+          <div class="kv-item"><span>Ataköy–Pendik–Ataköy</span><div>Her 8 dakikada bir tren</div></div>
+          <div class="kv-item"><span>Hafta Sonu Gece Seferleri</span><div>Sadece Cuma-Cumartesi ve Cumartesi-Pazar geceleri, hafta içi son seferden sonra 30 dakika arayla devam eder</div></div>
+        </div>
+
+        <div class="sched-all-label" style="margin-top:16px;">Seyahat Süresi</div>
+        <div class="kv">
+          <div class="kv-item"><span>Gebze–Halkalı</span><div>108 dakika</div></div>
+          <div class="kv-item"><span>Ataköy–Pendik</span><div>63 dakika</div></div>
+          <div class="kv-item"><span>Söğütlüçeşme–Yenikapı</span><div>14 dakika</div></div>
+          <div class="kv-item"><span>Üsküdar–Sirkeci</span><div>4 dakika</div></div>
+          <div class="kv-item"><span>Ayrılıkçeşmesi–Kazlıçeşme</span><div>15 dakika</div></div>
+          <div class="kv-item"><span>Bostancı–Bakırköy</span><div>37 dakika</div></div>
+        </div>
+
+        <div class="sched-all-label" style="margin-top:16px;">Günlük Sefer Sayısı</div>
+        <div class="kv">
+          <div class="kv-item"><span>Toplam (Marmaray Banliyö Hattı)</span><div>287 sefer</div></div>
+          <div class="kv-item"><span>Gebze–Halkalı–Gebze</span><div>148 sefer</div></div>
+          <div class="kv-item"><span>Pendik–Ataköy–Pendik</span><div>139 sefer</div></div>
+        </div>
+
+        <div class="sched-all-label" style="margin-top:16px;">YHT Aktarma İstasyonları</div>
+        <p class="subtitle" style="margin:0;">Gebze, Pendik, Bostancı, Söğütlüçeşme, Bakırköy ve Halkalı istasyonlarında YHT'lere aktarma yapılabilir.</p>
+
+        <div class="kv" style="margin-top:16px;">
+          <div class="kv-item"><span>Dikkat</span><div>Tren seferleri trafik durumuna göre değişiklik gösterebilir.</div></div>
+        </div>
+      </section>
+    </section>    <section id="screen-m11" class="screen">
+      <button class="back-btn" data-parent="kentici">← Geri</button>
+      <div class="panel-header"><div><h2>M11 Metro</h2><p>İstasyon seçin, Halkalı ve Gayrettepe yönlerindeki sefer bilgilerini görün.</p></div></div>
+
+      <div class="segmented">
+        <button type="button" class="segmented-btn active" data-target="m11-segment-istasyon">🔍 İstasyon Sorgula</button>
+        <button type="button" class="segmented-btn" data-target="m11-segment-guzergah">🔍 Güzergah Sorgula</button>
+      </div>
+
+      <div id="m11-segment-istasyon" class="segment-panel active">
+        <div class="controls"><label>İstasyon <select id="m11-station"></select></label></div>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+          <section class="card"><h3>Halkalı Yönü</h3><div id="m11-halkali-widget"></div></section>
+          <section class="card"><h3>Gayrettepe Yönü</h3><div id="m11-gayrettepe-widget"></div></section>
+        </div>
+      </div>
+
+      <div id="m11-segment-guzergah" class="segment-panel">
+        <section class="card">
+          <div class="grid" style="grid-template-columns:1fr 1fr;">
+            <label style="display:block;font-size:12px;color:var(--color-text-muted);margin-bottom:6px;font-weight:600;">
+              BİNİŞ İSTASYONU
+              <select id="m11-route-binis"><option value="">— Seçin —</option></select>
+            </label>
+            <label style="display:block;font-size:12px;color:var(--color-text-muted);margin-bottom:6px;font-weight:600;">
+              İNİŞ İSTASYONU
+              <select id="m11-route-inis"><option value="">— Seçin —</option></select>
+            </label>
+          </div>
+          <div id="m11-route-result" style="margin-top:16px;display:none;"></div>
+        </section>
+      </div>
+    </section>    <section id="screen-sirkeci-kazlicesme" class="screen">
+      <button class="back-btn" data-parent="kentici">← Geri</button>
+      <div class="panel-header"><div><h2>Sirkeci - Kazlıçeşme</h2><p>İstasyon seçin, Sirkeci ve Kazlıçeşme yönlerindeki sefer bilgilerini görün.</p></div></div>
+      <div class="controls"><label>İstasyon <select id="sk-station"></select></label></div>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+        <section class="card"><h3>Sirkeci Yönü</h3><div id="sk-sirkeci-widget"></div></section>
+        <section class="card"><h3>Kazlıçeşme Yönü</h3><div id="sk-kazlicesme-widget"></div></section>
+      </div>
+    </section>    <section id="screen-baskentray" class="screen">
+      <button class="back-btn" data-parent="kentici">← Geri</button>
+      <div class="panel-header"><div><h2>Başkentray</h2><p>İstasyon seçin, Sincan ve Kayaş yönlerindeki sefer bilgilerini görün.</p></div></div>
+      <div class="controls"><label>İstasyon <select id="baskentray-station"></select></label></div>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+        <section class="card"><h3>Sincan Yönü</h3><div id="baskentray-sincan-widget"></div></section>
+        <section class="card"><h3>Kayaş Yönü</h3><div id="baskentray-kayas-widget"></div></section>
+      </div>
+    </section></main><nav class="bottom-nav" aria-label="Ana gezinme"><button type="button" class="nav-btn active" data-screen="home"><span class="nav-icon">🏠</span>Ana Sayfa</button><button type="button" class="nav-btn" data-screen="kentici"><span class="nav-icon">🚆</span>Kentiçi Trenler</button></nav><script>
+function railwayNow() {
+ const parts = new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Istanbul', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23'}).formatToParts(new Date());
+ const values = Object.fromEntries(parts.map(p => [p.type, p.value]));
+ return new Date(+values.year, +values.month - 1, +values.day, +values.hour, +values.minute, +values.second);
+}
+window.EXEL_DATA = {"kayasSincan":{"title":"KAYAŞ - SİNCAN TREN SAATLERİ","pages":[{"page":1,"headers":["İSTASYON","20001","20003","20005","20007","20009","20011","20013","20015","20017","20019","20021","20023","20025","20027","20029","20031","20033","20035","20037","20039","20041","20043","20045","20047","20049"],"rows":[["Kayaş","06:00","06:12","06:24","06:36","06:48","07:00","07:12","07:24","07:36","07:48","08:00","08:12","08:24","08:36","08:48","09:00","09:15","09:30","09:45","10:00","10:15","10:30","10:45","11:00","11:15"],["Köstence","06:02","06:14","06:26","06:38","06:50","07:02","07:14","07:26","07:38","07:50","08:02","08:14","08:26","08:38","08:50","09:02","09:17","09:32","09:47","10:02","10:17","10:32","10:47","11:02","11:17"],["Üreğil","06:04","06:16","06:28","06:40","06:52","07:04","07:16","07:28","07:40","07:52","08:04","08:16","08:28","08:40","08:52","09:04","09:19","09:34","09:49","10:04","10:19","10:34","10:49","11:04","11:19"],["Bağderesi","06:05","06:17","06:29","06:41","06:53","07:05","07:17","07:29","07:41","07:53","08:05","08:17","08:29","08:41","08:53","09:05","09:20","09:35","09:50","10:05","10:20","10:35","10:50","11:05","11:20"],["Mamak","06:07","06:19","06:31","06:43","06:55","07:07","07:19","07:31","07:43","07:55","08:07","08:19","08:31","08:43","08:55","09:07","09:22","09:37","09:52","10:07","10:22","10:37","10:52","11:07","11:22"],["Saimekadın","06:09","06:21","06:33","06:45","06:57","07:09","07:21","07:33","07:45","07:57","08:09","08:21","08:33","08:45","08:57","09:09","09:24","09:39","09:54","10:09","10:24","10:39","10:54","11:09","11:24"],["Demirlibahçe","06:11","06:23","06:35","06:47","06:59","07:11","07:23","07:35","07:47","07:59","08:11","08:23","08:35","08:47","08:59","09:11","09:26","09:41","09:56","10:11","10:26","10:41","10:56","11:11","11:26"],["Cebeci","06:13","06:25","06:37","06:49","07:01","07:13","07:25","07:37","07:49","08:01","08:13","08:25","08:37","08:49","09:01","09:13","09:28","09:43","09:58","10:13","10:28","10:43","10:58","11:13","11:28"],["Kurtuluş","06:15","06:27","06:39","06:51","07:03","07:15","07:27","07:39","07:51","08:03","08:15","08:27","08:39","08:51","09:03","09:15","09:30","09:45","10:00","10:15","10:30","10:45","11:00","11:15","11:30"],["Yenişehir","06:16","06:28","06:40","06:52","07:04","07:16","07:28","07:40","07:52","08:04","08:16","08:28","08:40","08:52","09:04","09:16","09:31","09:46","10:01","10:16","10:31","10:46","11:01","11:16","11:31"],["Ankara","06:20","06:32","06:44","06:56","07:08","07:20","07:32","07:44","07:56","08:08","08:20","08:32","08:44","08:56","09:08","09:20","09:35","09:50","10:05","10:20","10:35","10:50","11:05","11:20","11:35"],["Hipodrom","06:23","06:35","06:47","06:59","07:11","07:23","07:35","07:47","07:59","08:11","08:23","08:35","08:47","08:59","09:11","09:23","09:38","09:53","10:08","10:23","10:38","10:53","11:08","11:23","11:38"],["Gazi Mahallesi","06:25","06:37","06:49","07:01","07:13","07:25","07:37","07:49","08:01","08:13","08:25","08:37","08:49","09:01","09:13","09:25","09:40","09:55","10:10","10:25","10:40","10:55","11:10","11:25","11:40"],["Gazi","06:27","06:39","06:51","07:03","07:15","07:27","07:39","07:51","08:03","08:15","08:27","08:39","08:51","09:03","09:15","09:27","09:42","09:57","10:12","10:27","10:42","10:57","11:12","11:27","11:42"],["Motor Durağı","06:29","06:41","06:53","07:05","07:17","07:29","07:41","07:53","08:05","08:17","08:29","08:41","08:53","09:05","09:17","09:29","09:44","09:59","10:14","10:29","10:44","10:59","11:14","11:29","11:44"],["Behiçbey","06:32","06:44","06:56","07:08","07:20","07:32","07:44","07:56","08:08","08:20","08:32","08:44","08:56","09:08","09:20","09:32","09:47","10:02","10:17","10:32","10:47","11:02","11:17","11:32","11:47"],["Yıldırım","06:35","06:47","06:59","07:11","07:23","07:35","07:47","07:59","08:11","08:23","08:35","08:47","08:59","09:11","09:23","09:35","09:50","10:05","10:20","10:35","10:50","11:05","11:20","11:35","11:50"],["Havadurağı","06:37","06:49","07:01","07:13","07:25","07:37","07:49","08:01","08:13","08:25","08:37","08:49","09:01","09:13","09:25","09:37","09:52","10:07","10:22","10:37","10:52","11:07","11:22","11:37","11:52"],["Etimesgut","06:39","06:51","07:03","07:15","07:27","07:39","07:51","08:03","08:15","08:27","08:39","08:51","09:03","09:15","09:27","09:39","09:54","10:09","10:24","10:39","10:54","11:09","11:24","11:39","11:54"],["Özgüneş","06:41","06:53","07:05","07:17","07:29","07:41","07:53","08:05","08:17","08:29","08:41","08:53","09:05","09:17","09:29","09:41","09:56","10:11","10:26","10:41","10:56","11:11","11:26","11:41","11:56"],["Eryaman YHT","06:43","06:55","07:07","07:19","07:31","07:43","07:55","08:07","08:19","08:31","08:43","08:55","09:07","09:19","09:31","09:43","09:58","10:13","10:28","10:43","10:58","11:13","11:28","11:43","11:58"],["Elvankent","06:45","06:57","07:09","07:21","07:33","07:45","07:57","08:09","08:21","08:33","08:45","08:57","09:09","09:21","09:33","09:45","10:00","10:15","10:30","10:45","11:00","11:15","11:30","11:45","12:00"],["Lale","06:47","06:59","07:11","07:23","07:35","07:47","07:59","08:11","08:23","08:35","08:47","08:59","09:11","09:23","09:35","09:47","10:02","10:17","10:32","10:47","11:02","11:17","11:32","11:47","12:02"],["Sincan","06:49","07:01","07:13","07:25","07:37","07:49","08:01","08:13","08:25","08:37","08:49","09:01","09:13","09:25","09:37","09:49","10:04","10:19","10:34","10:49","11:04","11:19","11:34","11:49","12:04"]]},{"page":2,"headers":["İSTASYON","20051","20053","20055","20057","20059","20061","20063","20065","20067","20069","20071","20073","20075","20077","20079","20081","20083","20085","20087","20089","20091","20093","20095","20097"],"rows":[["Kayaş","11:30","11:45","12:00","12:15","12:30","12:45","13:00","13:15","13:30","13:45","14:00","14:15","14:30","14:45","15:00","15:15","15:30","15:45","15:57","16:09","16:21","16:33","16:45","16:57"],["Köstence","11:32","11:47","12:02","12:17","12:32","12:47","13:02","13:17","13:32","13:47","14:02","14:17","14:32","14:47","15:02","15:17","15:32","15:47","15:59","16:11","16:23","16:35","16:47","16:59"],["Üreğil","11:34","11:49","12:04","12:19","12:34","12:49","13:04","13:19","13:34","13:49","14:04","14:19","14:34","14:49","15:04","15:19","15:34","15:49","16:01","16:13","16:25","16:37","16:49","17:01"],["Bağderesi","11:35","11:50","12:05","12:20","12:35","12:50","13:05","13:20","13:35","13:50","14:05","14:20","14:35","14:50","15:05","15:20","15:35","15:50","16:02","16:14","16:26","16:38","16:50","17:02"],["Mamak","11:37","11:52","12:07","12:22","12:37","12:52","13:07","13:22","13:37","13:52","14:07","14:22","14:37","14:52","15:07","15:22","15:37","15:52","16:04","16:16","16:28","16:40","16:52","17:04"],["Saimekadın","11:39","11:54","12:09","12:24","12:39","12:54","13:09","13:24","13:39","13:54","14:09","14:24","14:39","14:54","15:09","15:24","15:39","15:54","16:06","16:18","16:30","16:42","16:54","17:06"],["Demirlibahçe","11:41","11:56","12:11","12:26","12:41","12:56","13:11","13:26","13:41","13:56","14:11","14:26","14:41","14:56","15:11","15:26","15:41","15:56","16:08","16:20","16:32","16:44","16:56","17:08"],["Cebeci","11:43","11:58","12:13","12:28","12:43","12:58","13:13","13:28","13:43","13:58","14:13","14:28","14:43","14:58","15:13","15:28","15:43","15:58","16:10","16:22","16:34","16:46","16:58","17:10"],["Kurtuluş","11:45","12:00","12:15","12:30","12:45","13:00","13:15","13:30","13:45","14:00","14:15","14:30","14:45","15:00","15:15","15:30","15:45","16:00","16:12","16:24","16:36","16:48","17:00","17:12"],["Yenişehir","11:46","12:01","12:16","12:31","12:46","13:01","13:16","13:31","13:46","14:01","14:16","14:31","14:46","15:01","15:16","15:31","15:46","16:01","16:13","16:25","16:37","16:49","17:01","17:13"],["Ankara","11:50","12:05","12:20","12:35","12:50","13:05","13:20","13:35","13:50","14:05","14:20","14:35","14:50","15:05","15:20","15:35","15:50","16:05","16:17","16:29","16:41","16:53","17:05","17:17"],["Hipodrom","11:53","12:08","12:23","12:38","12:53","13:08","13:23","13:38","13:53","14:08","14:23","14:38","14:53","15:08","15:23","15:38","15:53","16:08","16:20","16:32","16:44","16:56","17:08","17:20"],["Gazi Mahallesi","11:55","12:10","12:25","12:40","12:55","13:10","13:25","13:40","13:55","14:10","14:25","14:40","14:55","15:10","15:25","15:40","15:55","16:10","16:22","16:34","16:46","16:58","17:10","17:22"],["Gazi","11:57","12:12","12:27","12:42","12:57","13:12","13:27","13:42","13:57","14:12","14:27","14:42","14:57","15:12","15:27","15:42","15:57","16:12","16:24","16:36","16:48","17:00","17:12","17:24"],["Motor Durağı","11:59","12:14","12:29","12:44","12:59","13:14","13:29","13:44","13:59","14:14","14:29","14:44","14:59","15:14","15:29","15:44","15:59","16:14","16:26","16:38","16:50","17:02","17:14","17:26"],["Behiçbey","12:02","12:17","12:32","12:47","13:02","13:17","13:32","13:47","14:02","14:17","14:32","14:47","15:02","15:17","15:32","15:47","16:02","16:17","16:29","16:41","16:53","17:05","17:17","17:29"],["Yıldırım","12:05","12:20","12:35","12:50","13:05","13:20","13:35","13:50","14:05","14:20","14:35","14:50","15:05","15:20","15:35","15:50","16:05","16:20","16:32","16:44","16:56","17:08","17:20","17:32"],["Havadurağı","12:07","12:22","12:37","12:52","13:07","13:22","13:37","13:52","14:07","14:22","14:37","14:52","15:07","15:22","15:37","15:52","16:07","16:22","16:34","16:46","16:58","17:10","17:22","17:34"],["Etimesgut","12:09","12:24","12:39","12:54","13:09","13:24","13:39","13:54","14:09","14:24","14:39","14:54","15:09","15:24","15:39","15:54","16:09","16:24","16:36","16:48","17:00","17:12","17:24","17:36"],["Özgüneş","12:11","12:26","12:41","12:56","13:11","13:26","13:41","13:56","14:11","14:26","14:41","14:56","15:11","15:26","15:41","15:56","16:11","16:26","16:38","16:50","17:02","17:14","17:26","17:38"],["Eryaman YHT","12:13","12:28","12:43","12:58","13:13","13:28","13:43","13:58","14:13","14:28","14:43","14:58","15:13","15:28","15:43","15:58","16:13","16:28","16:40","16:52","17:04","17:16","17:28","17:40"],["Elvankent","12:15","12:30","12:45","13:00","13:15","13:30","13:45","14:00","14:15","14:30","14:45","15:00","15:15","15:30","15:45","16:00","16:15","16:30","16:42","16:54","17:06","17:18","17:30","17:42"],["Lale","12:17","12:32","12:47","13:02","13:17","13:32","13:47","14:02","14:17","14:32","14:47","15:02","15:17","15:32","15:47","16:02","16:17","16:32","16:44","16:56","17:08","17:20","17:32","17:44"],["Sincan","12:19","12:34","12:49","13:04","13:19","13:34","13:49","14:04","14:19","14:34","14:49","15:04","15:19","15:34","15:49","16:04","16:19","16:34","16:46","16:58","17:10","17:22","17:34","17:46"]]},{"page":3,"headers":["İSTASYON","20099","20101","20103","20105","20107","20109","20111","20113","20115","20117","20119","20121","20123","20125","20127","20129","20131","20133","20135","20137","20139","20141","20143","20145"],"rows":[["Kayaş","17:09","17:21","17:33","17:45","17:57","18:09","18:21","18:33","18:45","19:00","19:15","19:30","19:45","20:00","20:15","20:30","20:45","21:00","21:15","21:30","22:00","22:30","23:00","23:30"],["Köstence","17:11","17:23","17:35","17:47","17:59","18:11","18:23","18:35","18:47","19:02","19:17","19:32","19:47","20:02","20:17","20:32","20:47","21:02","21:17","21:32","22:02","22:32","23:02","23:32"],["Üreğil","17:13","17:25","17:37","17:49","18:01","18:13","18:25","18:37","18:49","19:04","19:19","19:34","19:49","20:04","20:19","20:34","20:49","21:04","21:19","21:34","22:04","22:34","23:04","23:34"],["Bağderesi","17:14","17:26","17:38","17:50","18:02","18:14","18:26","18:38","18:50","19:05","19:20","19:35","19:50","20:05","20:20","20:35","20:50","21:05","21:20","21:35","22:05","22:35","23:05","23:35"],["Mamak","17:16","17:28","17:40","17:52","18:04","18:16","18:28","18:40","18:52","19:07","19:22","19:37","19:52","20:07","20:22","20:37","20:52","21:07","21:22","21:37","22:07","22:37","23:07","23:37"],["Saimekadın","17:18","17:30","17:42","17:54","18:06","18:18","18:30","18:42","18:54","19:09","19:24","19:39","19:54","20:09","20:24","20:39","20:54","21:09","21:24","21:39","22:09","22:39","23:09","23:39"],["Demirlibahçe","17:20","17:32","17:44","17:56","18:08","18:20","18:32","18:44","18:56","19:11","19:26","19:41","19:56","20:11","20:26","20:41","20:56","21:11","21:26","21:41","22:11","22:41","23:11","23:41"],["Cebeci","17:22","17:34","17:46","17:58","18:10","18:22","18:34","18:46","18:58","19:13","19:28","19:43","19:58","20:13","20:28","20:43","20:58","21:13","21:28","21:43","22:13","22:43","23:13","23:43"],["Kurtuluş","17:24","17:36","17:48","18:00","18:12","18:24","18:36","18:48","19:00","19:15","19:30","19:45","20:00","20:15","20:30","20:45","21:00","21:15","21:30","21:45","22:15","22:45","23:15","23:45"],["Yenişehir","17:25","17:37","17:49","18:01","18:13","18:25","18:37","18:49","19:01","19:16","19:31","19:46","20:01","20:16","20:31","20:46","21:01","21:16","21:31","21:46","22:16","22:46","23:16","23:46"],["Ankara","17:29","17:41","17:53","18:05","18:17","18:29","18:41","18:53","19:05","19:20","19:35","19:50","20:05","20:20","20:35","20:50","21:05","21:20","21:35","21:50","22:20","22:50","23:20","23:50"],["Hipodrom","17:32","17:44","17:56","18:08","18:20","18:32","18:44","18:56","19:08","19:23","19:38","19:53","20:08","20:23","20:38","20:53","21:08","21:23","21:38","21:53","22:23","22:53","23:23","23:53"],["Gazi Mahallesi","17:34","17:46","17:58","18:10","18:22","18:34","18:46","18:58","19:10","19:25","19:40","19:55","20:10","20:25","20:40","20:55","21:10","21:25","21:40","21:55","22:25","22:55","23:25","23:55"],["Gazi","17:36","17:48","18:00","18:12","18:24","18:36","18:48","19:00","19:12","19:27","19:42","19:57","20:12","20:27","20:42","20:57","21:12","21:27","21:42","21:57","22:27","22:57","23:27","23:57"],["Motor Durağı","17:38","17:50","18:02","18:14","18:26","18:38","18:50","19:02","19:14","19:29","19:44","19:59","20:14","20:29","20:44","20:59","21:14","21:29","21:44","21:59","22:29","22:59","23:29","23:59"],["Behiçbey","17:41","17:53","18:05","18:17","18:29","18:41","18:53","19:05","19:17","19:32","19:47","20:02","20:17","20:32","20:47","21:02","21:17","21:32","21:47","22:02","22:32","23:02","23:32","00:02"],["Yıldırım","17:44","17:56","18:08","18:20","18:32","18:44","18:56","19:08","19:20","19:35","19:50","20:05","20:20","20:35","20:50","21:05","21:20","21:35","21:50","22:05","22:35","23:05","23:35","00:05"],["Havadurağı","17:46","17:58","18:10","18:22","18:34","18:46","18:58","19:10","19:22","19:37","19:52","20:07","20:22","20:37","20:52","21:07","21:22","21:37","21:52","22:07","22:37","23:07","23:37","00:07"],["Etimesgut","17:48","18:00","18:12","18:24","18:36","18:48","19:00","19:12","19:24","19:39","19:54","20:09","20:24","20:39","20:54","21:09","21:24","21:39","21:54","22:09","22:39","23:09","23:39","00:09"],["Özgüneş","17:50","18:02","18:14","18:26","18:38","18:50","19:02","19:14","19:26","19:41","19:56","20:11","20:26","20:41","20:56","21:11","21:26","21:41","21:56","22:11","22:41","23:11","23:41","00:11"],["Eryaman YHT","17:52","18:04","18:16","18:28","18:40","18:52","19:04","19:16","19:28","19:43","19:58","20:13","20:28","20:43","20:58","21:13","21:28","21:43","21:58","22:13","22:43","23:13","23:43","00:13"],["Elvankent","17:54","18:06","18:18","18:30","18:42","18:54","19:06","19:18","19:30","19:45","20:00","20:15","20:30","20:45","21:00","21:15","21:30","21:45","22:00","22:15","22:45","23:15","23:45","00:15"],["Lale","17:56","18:08","18:20","18:32","18:44","18:56","19:08","19:20","19:32","19:47","20:02","20:17","20:32","20:47","21:02","21:17","21:32","21:47","22:02","22:17","22:47","23:17","23:47","00:17"],["Sincan","17:58","18:10","18:22","18:34","18:46","18:58","19:10","19:22","19:34","19:49","20:04","20:19","20:34","20:49","21:04","21:19","21:34","21:49","22:04","22:19","22:49","23:19","23:49","00:19"]]}]},"sincanKayas":{"title":"SİNCAN - KAYAŞ TREN SAATLERİ","pages":[{"page":1,"headers":["İSTASYON","20002","20004","20006","20008","20010","20012","20014","20016","20018","20020","20022","20024","20026","20028","20030","20032","20034","20036","20038","20040","20042","20044","20046","20048","20050"],"rows":[["Sincan","06:00","06:12","06:24","06:36","06:48","07:00","07:12","07:24","07:36","07:48","08:00","08:12","08:24","08:36","08:48","09:00","09:15","09:30","09:45","10:00","10:15","10:30","10:45","11:00","11:15"],["Lale","06:02","06:14","06:26","06:38","06:50","07:02","07:14","07:26","07:38","07:50","08:02","08:14","08:26","08:38","08:50","09:02","09:17","09:32","09:47","10:02","10:17","10:32","10:47","11:02","11:17"],["Elvankent","06:04","06:16","06:28","06:40","06:52","07:04","07:16","07:28","07:40","07:52","08:04","08:16","08:28","08:40","08:52","09:04","09:19","09:34","09:49","10:04","10:19","10:34","10:49","11:04","11:19"],["Eryaman YHT","06:06","06:18","06:30","06:42","06:54","07:06","07:18","07:30","07:42","07:54","08:06","08:18","08:30","08:42","08:54","09:06","09:21","09:36","09:51","10:06","10:21","10:36","10:51","11:06","11:21"],["Özgüneş","06:08","06:20","06:32","06:44","06:56","07:08","07:20","07:32","07:44","07:56","08:08","08:20","08:32","08:44","08:56","09:08","09:23","09:38","09:53","10:08","10:23","10:38","10:53","11:08","11:23"],["Etimesgut","06:10","06:22","06:34","06:46","06:58","07:10","07:22","07:34","07:46","07:58","08:10","08:22","08:34","08:46","08:58","09:10","09:25","09:40","09:55","10:10","10:25","10:40","10:55","11:10","11:25"],["Havadurağı","06:12","06:24","06:36","06:48","07:00","07:12","07:24","07:36","07:48","08:00","08:12","08:24","08:36","08:48","09:00","09:12","09:27","09:42","09:57","10:12","10:27","10:42","10:57","11:12","11:27"],["Yıldırım","06:14","06:26","06:38","06:50","07:02","07:14","07:26","07:38","07:50","08:02","08:14","08:26","08:38","08:50","09:02","09:14","09:29","09:44","09:59","10:14","10:29","10:44","10:59","11:14","11:29"],["Behiçbey","06:17","06:29","06:41","06:53","07:05","07:17","07:29","07:41","07:53","08:05","08:17","08:29","08:41","08:53","09:05","09:17","09:32","09:47","10:02","10:17","10:32","10:47","11:02","11:17","11:32"],["Motor Durağı","06:20","06:32","06:44","06:56","07:08","07:20","07:32","07:44","07:56","08:08","08:20","08:32","08:44","08:56","09:08","09:20","09:35","09:50","10:05","10:20","10:35","10:50","11:05","11:20","11:35"],["Gazi","06:22","06:34","06:46","06:58","07:10","07:22","07:34","07:46","07:58","08:10","08:22","08:34","08:46","08:58","09:10","09:22","09:37","09:52","10:07","10:22","10:37","10:52","11:07","11:22","11:37"],["Gazi Mahallesi","06:24","06:36","06:48","07:00","07:12","07:24","07:36","07:48","08:00","08:12","08:24","08:36","08:48","09:00","09:12","09:24","09:39","09:54","10:09","10:24","10:39","10:54","11:09","11:24","11:39"],["Hipodrom","06:26","06:38","06:50","07:02","07:14","07:26","07:38","07:50","08:02","08:14","08:26","08:38","08:50","09:02","09:14","09:26","09:41","09:56","10:11","10:26","10:41","10:56","11:11","11:26","11:41"],["Ankara","06:29","06:41","06:53","07:05","07:17","07:29","07:41","07:53","08:05","08:17","08:29","08:41","08:53","09:05","09:17","09:29","09:44","09:59","10:14","10:29","10:44","10:59","11:14","11:29","11:44"],["Yenişehir","06:33","06:45","06:57","07:09","07:21","07:33","07:45","07:57","08:09","08:21","08:33","08:45","08:57","09:09","09:21","09:33","09:48","10:03","10:18","10:33","10:48","11:03","11:18","11:33","11:48"],["Kurtuluş","06:34","06:46","06:58","07:10","07:22","07:34","07:46","07:58","08:10","08:22","08:34","08:46","08:58","09:10","09:22","09:34","09:49","10:04","10:19","10:34","10:49","11:04","11:19","11:34","11:49"],["Cebeci","06:36","06:48","07:00","07:12","07:24","07:36","07:48","08:00","08:12","08:24","08:36","08:48","09:00","09:12","09:24","09:36","09:51","10:06","10:21","10:36","10:51","11:06","11:21","11:36","11:51"],["Demirlibahçe","06:38","06:50","07:02","07:14","07:26","07:38","07:50","08:02","08:14","08:26","08:38","08:50","09:02","09:14","09:26","09:38","09:53","10:08","10:23","10:38","10:53","11:08","11:23","11:38","11:53"],["Saimekadın","06:40","06:52","07:04","07:16","07:28","07:40","07:52","08:04","08:16","08:28","08:40","08:52","09:04","09:16","09:28","09:40","09:55","10:10","10:25","10:40","10:55","11:10","11:25","11:40","11:55"],["Mamak","06:42","06:54","07:06","07:18","07:30","07:42","07:54","08:06","08:18","08:30","08:42","08:54","09:06","09:18","09:30","09:42","09:57","10:12","10:27","10:42","10:57","11:12","11:27","11:42","11:57"],["Bağderesi","06:44","06:56","07:08","07:20","07:32","07:44","07:56","08:08","08:20","08:32","08:44","08:56","09:08","09:20","09:32","09:44","09:59","10:14","10:29","10:44","10:59","11:14","11:29","11:44","11:59"],["Üreğil","06:45","06:57","07:09","07:21","07:33","07:45","07:57","08:09","08:21","08:33","08:45","08:57","09:09","09:21","09:33","09:45","10:00","10:15","10:30","10:45","11:00","11:15","11:30","11:45","12:00"],["Köstence","06:47","06:59","07:11","07:23","07:35","07:47","07:59","08:11","08:23","08:35","08:47","08:59","09:11","09:23","09:35","09:47","10:02","10:17","10:32","10:47","11:02","11:17","11:32","11:47","12:02"],["Kayaş","06:49","07:01","07:13","07:25","07:37","07:49","08:01","08:13","08:25","08:37","08:49","09:01","09:13","09:25","09:37","09:49","10:04","10:19","10:34","10:49","11:04","11:19","11:34","11:49","12:04"]]},{"page":2,"headers":["İSTASYON","20052","20054","20056","20058","20060","20062","20064","20066","20068","20070","20072","20074","20076","20078","20080","20082","20084","20086","20088","20090","20092","20094","20096","20098"],"rows":[["Sincan","11:30","11:45","12:00","12:15","12:30","12:45","13:00","13:15","13:30","13:45","14:00","14:15","14:30","14:45","15:00","15:15","15:30","15:45","15:57","16:09","16:21","16:33","16:45","16:57"],["Lale","11:32","11:47","12:02","12:17","12:32","12:47","13:02","13:17","13:32","13:47","14:02","14:17","14:32","14:47","15:02","15:17","15:32","15:47","15:59","16:11","16:23","16:35","16:47","16:59"],["Elvankent","11:34","11:49","12:04","12:19","12:34","12:49","13:04","13:19","13:34","13:49","14:04","14:19","14:34","14:49","15:04","15:19","15:34","15:49","16:01","16:13","16:25","16:37","16:49","17:01"],["Eryaman YHT","11:36","11:51","12:06","12:21","12:36","12:51","13:06","13:21","13:36","13:51","14:06","14:21","14:36","14:51","15:06","15:21","15:36","15:51","16:03","16:15","16:27","16:39","16:51","17:03"],["Özgüneş","11:38","11:53","12:08","12:23","12:38","12:53","13:08","13:23","13:38","13:53","14:08","14:23","14:38","14:53","15:08","15:23","15:38","15:53","16:05","16:17","16:29","16:41","16:53","17:05"],["Etimesgut","11:40","11:55","12:10","12:25","12:40","12:55","13:10","13:25","13:40","13:55","14:10","14:25","14:40","14:55","15:10","15:25","15:40","15:55","16:07","16:19","16:31","16:43","16:55","17:07"],["Havadurağı","11:42","11:57","12:12","12:27","12:42","12:57","13:12","13:27","13:42","13:57","14:12","14:27","14:42","14:57","15:12","15:27","15:42","15:57","16:09","16:21","16:33","16:45","16:57","17:09"],["Yıldırım","11:44","11:59","12:14","12:29","12:44","12:59","13:14","13:29","13:44","13:59","14:14","14:29","14:44","14:59","15:14","15:29","15:44","15:59","16:11","16:23","16:35","16:47","16:59","17:11"],["Behiçbey","11:47","12:02","12:17","12:32","12:47","13:02","13:17","13:32","13:47","14:02","14:17","14:32","14:47","15:02","15:17","15:32","15:47","16:02","16:14","16:26","16:38","16:50","17:02","17:14"],["Motor Durağı","11:50","12:05","12:20","12:35","12:50","13:05","13:20","13:35","13:50","14:05","14:20","14:35","14:50","15:05","15:20","15:35","15:50","16:05","16:17","16:29","16:41","16:53","17:05","17:17"],["Gazi","11:52","12:07","12:22","12:37","12:52","13:07","13:22","13:37","13:52","14:07","14:22","14:37","14:52","15:07","15:22","15:37","15:52","16:07","16:19","16:31","16:43","16:55","17:07","17:19"],["Gazi Mahallesi","11:54","12:09","12:24","12:39","12:54","13:09","13:24","13:39","13:54","14:09","14:24","14:39","14:54","15:09","15:24","15:39","15:54","16:09","16:21","16:33","16:45","16:57","17:09","17:21"],["Hipodrom","11:56","12:11","12:26","12:41","12:56","13:11","13:26","13:41","13:56","14:11","14:26","14:41","14:56","15:11","15:26","15:41","15:56","16:11","16:23","16:35","16:47","16:59","17:11","17:23"],["Ankara","11:59","12:14","12:29","12:44","12:59","13:14","13:29","13:44","13:59","14:14","14:29","14:44","14:59","15:14","15:29","15:44","15:59","16:14","16:26","16:38","16:50","17:02","17:14","17:26"],["Yenişehir","12:03","12:18","12:33","12:48","13:03","13:18","13:33","13:48","14:03","14:18","14:33","14:48","15:03","15:18","15:33","15:48","16:03","16:18","16:30","16:42","16:54","17:06","17:18","17:30"],["Kurtuluş","12:04","12:19","12:34","12:49","13:04","13:19","13:34","13:49","14:04","14:19","14:34","14:49","15:04","15:19","15:34","15:49","16:04","16:19","16:31","16:43","16:55","17:07","17:19","17:31"],["Cebeci","12:06","12:21","12:36","12:51","13:06","13:21","13:36","13:51","14:06","14:21","14:36","14:51","15:06","15:21","15:36","15:51","16:06","16:21","16:33","16:45","16:57","17:09","17:21","17:33"],["Demirlibahçe","12:08","12:23","12:38","12:53","13:08","13:23","13:38","13:53","14:08","14:23","14:38","14:53","15:08","15:23","15:38","15:53","16:08","16:23","16:35","16:47","16:59","17:11","17:23","17:35"],["Saimekadın","12:10","12:25","12:40","12:55","13:10","13:25","13:40","13:55","14:10","14:25","14:40","14:55","15:10","15:25","15:40","15:55","16:10","16:25","16:37","16:49","17:01","17:13","17:25","17:37"],["Mamak","12:12","12:27","12:42","12:57","13:12","13:27","13:42","13:57","14:12","14:27","14:42","14:57","15:12","15:27","15:42","15:57","16:12","16:27","16:39","16:51","17:03","17:15","17:27","17:39"],["Bağderesi","12:14","12:29","12:44","12:59","13:14","13:29","13:44","13:59","14:14","14:29","14:44","14:59","15:14","15:29","15:44","15:59","16:14","16:29","16:41","16:53","17:05","17:17","17:29","17:41"],["Üreğil","12:15","12:30","12:45","13:00","13:15","13:30","13:45","14:00","14:15","14:30","14:45","15:00","15:15","15:30","15:45","16:00","16:15","16:30","16:42","16:54","17:06","17:18","17:30","17:42"],["Köstence","12:17","12:32","12:47","13:02","13:17","13:32","13:47","14:02","14:17","14:32","14:47","15:02","15:17","15:32","15:47","16:02","16:17","16:32","16:44","16:56","17:08","17:20","17:32","17:44"],["Kayaş","12:19","12:34","12:49","13:04","13:19","13:34","13:49","14:04","14:19","14:34","14:49","15:04","15:19","15:34","15:49","16:04","16:19","16:34","16:46","16:58","17:10","17:22","17:34","17:46"]]},{"page":3,"headers":["İSTASYON","20100","20102","20104","20106","20108","20110","20112","20114","20116","20118","20120","20122","20124","20126","20128","20130","20132","20134","20136","20138","20140","20142","20144","20146"],"rows":[["Sincan","17:09","17:21","17:33","17:45","17:57","18:09","18:21","18:33","18:45","19:00","19:15","19:30","19:45","20:00","20:15","20:30","20:45","21:00","21:15","21:30","22:00","22:30","23:00","23:30"],["Lale","17:11","17:23","17:35","17:47","17:59","18:11","18:23","18:35","18:47","19:02","19:17","19:32","19:47","20:02","20:17","20:32","20:47","21:02","21:17","21:32","22:02","22:32","23:02","23:32"],["Elvankent","17:13","17:25","17:37","17:49","18:01","18:13","18:25","18:37","18:49","19:04","19:19","19:34","19:49","20:04","20:19","20:34","20:49","21:04","21:19","21:34","22:04","22:34","23:04","23:34"],["Eryaman YHT","17:15","17:27","17:39","17:51","18:03","18:15","18:27","18:39","18:51","19:06","19:21","19:36","19:51","20:06","20:21","20:36","20:51","21:06","21:21","21:36","22:06","22:36","23:06","23:36"],["Özgüneş","17:17","17:29","17:41","17:53","18:05","18:17","18:29","18:41","18:53","19:08","19:23","19:38","19:53","20:08","20:23","20:38","20:53","21:08","21:23","21:38","22:08","22:38","23:08","23:38"],["Etimesgut","17:19","17:31","17:43","17:55","18:07","18:19","18:31","18:43","18:55","19:10","19:25","19:40","19:55","20:10","20:25","20:40","20:55","21:10","21:25","21:40","22:10","22:40","23:10","23:40"],["Havadurağı","17:21","17:33","17:45","17:57","18:09","18:21","18:33","18:45","18:57","19:12","19:27","19:42","19:57","20:12","20:27","20:42","20:57","21:12","21:27","21:42","22:12","22:42","23:12","23:42"],["Yıldırım","17:23","17:35","17:47","17:59","18:11","18:23","18:35","18:47","18:59","19:14","19:29","19:44","19:59","20:14","20:29","20:44","20:59","21:14","21:29","21:44","22:14","22:44","23:14","23:44"],["Behiçbey","17:26","17:38","17:50","18:02","18:14","18:26","18:38","18:50","19:02","19:17","19:32","19:47","20:02","20:17","20:32","20:47","21:02","21:17","21:32","21:47","22:17","22:47","23:17","23:47"],["Motor Durağı","17:29","17:41","17:53","18:05","18:17","18:29","18:41","18:53","19:05","19:20","19:35","19:50","20:05","20:20","20:35","20:50","21:05","21:20","21:35","21:50","22:20","22:50","23:20","23:50"],["Gazi","17:31","17:43","17:55","18:07","18:19","18:31","18:43","18:55","19:07","19:22","19:37","19:52","20:07","20:22","20:37","20:52","21:07","21:22","21:37","21:52","22:22","22:52","23:22","23:52"],["Gazi Mahallesi","17:33","17:45","17:57","18:09","18:21","18:33","18:45","18:57","19:09","19:24","19:39","19:54","20:09","20:24","20:39","20:54","21:09","21:24","21:39","21:54","22:24","22:54","23:24","23:54"],["Hipodrom","17:35","17:47","17:59","18:11","18:23","18:35","18:47","18:59","19:11","19:26","19:41","19:56","20:11","20:26","20:41","20:56","21:11","21:26","21:41","21:56","22:26","22:56","23:26","23:56"],["Ankara","17:38","17:50","18:02","18:14","18:26","18:38","18:50","19:02","19:14","19:29","19:44","19:59","20:14","20:29","20:44","20:59","21:14","21:29","21:44","21:59","22:29","22:59","23:29","23:59"],["Yenişehir","17:42","17:54","18:06","18:18","18:30","18:42","18:54","19:06","19:18","19:33","19:48","20:03","20:18","20:33","20:48","21:03","21:18","21:33","21:48","22:03","22:33","23:03","23:33","00:03"],["Kurtuluş","17:43","17:55","18:07","18:19","18:31","18:43","18:55","19:07","19:19","19:34","19:49","20:04","20:19","20:34","20:49","21:04","21:19","21:34","21:49","22:04","22:34","23:04","23:34","00:04"],["Cebeci","17:45","17:57","18:09","18:21","18:33","18:45","18:57","19:09","19:21","19:36","19:51","20:06","20:21","20:36","20:51","21:06","21:21","21:36","21:51","22:06","22:36","23:06","23:36","00:06"],["Demirlibahçe","17:47","17:59","18:11","18:23","18:35","18:47","18:59","19:11","19:23","19:38","19:53","20:08","20:23","20:38","20:53","21:08","21:23","21:38","21:53","22:08","22:38","23:08","23:38","00:08"],["Saimekadın","17:49","18:01","18:13","18:25","18:37","18:49","19:01","19:13","19:25","19:40","19:55","20:10","20:25","20:40","20:55","21:10","21:25","21:40","21:55","22:10","22:40","23:10","23:40","00:10"],["Mamak","17:51","18:03","18:15","18:27","18:39","18:51","19:03","19:15","19:27","19:42","19:57","20:12","20:27","20:42","20:57","21:12","21:27","21:42","21:57","22:12","22:42","23:12","23:42","00:12"],["Bağderesi","17:53","18:05","18:17","18:29","18:41","18:53","19:05","19:17","19:29","19:44","19:59","20:14","20:29","20:44","20:59","21:14","21:29","21:44","21:59","22:14","22:44","23:14","23:44","00:14"],["Üreğil","17:54","18:06","18:18","18:30","18:42","18:54","19:06","19:18","19:30","19:45","20:00","20:15","20:30","20:45","21:00","21:15","21:30","21:45","22:00","22:15","22:45","23:15","23:45","00:15"],["Köstence","17:56","18:08","18:20","18:32","18:44","18:56","19:08","19:20","19:32","19:47","20:02","20:17","20:32","20:47","21:02","21:17","21:32","21:47","22:02","22:17","22:47","23:17","23:47","00:17"],["Kayaş","17:58","18:10","18:22","18:34","18:46","18:58","19:10","19:22","19:34","19:49","20:04","20:19","20:34","20:49","21:04","21:19","21:34","21:49","22:04","22:19","22:49","23:19","23:49","00:19"]]}]},"sirkeciKazlicesme":{"title":"SİRKECİ - KAZLIÇEŞME HATTI İLK VE SON TREN SAATLERİ","sections":[{"title":"SİRKECİ YÖNÜ","rows":[["KAZLIÇEŞME YÜZEYSEL","06:00","22:40"],["YEDİKULE","06:02","22:42"],["KOCAMUSTAFAPAŞA","06:04","22:44"],["CERRAHPAŞA","06:06","22:46"],["YENİKAPI YÜZEYSEL","06:12","22:52"],["KUMKAPI","06:14","22:54"],["CANKURTARAN","06:17","22:57"]]},{"title":"KAZLIÇEŞME YÖNÜ","rows":[["SİRKECİ YÜZEYSEL","06:00","23:05"],["CANKURTARAN","06:04","23:09"],["KUMKAPI","06:07","23:12"],["YENİKAPI YÜZEYSEL","06:09","23:14"],["CERRAHPAŞA","06:11","23:16"],["KOCAMUSTAFAPAŞA","06:13","23:18"],["YEDİKULE","06:15","23:20"]]}]}};
+
+window.MARMARAY = {
+    halkaliYonu: [
+      ['GEBZE','06:05','23:20','01:20'],
+      ['DARICA','06:07','23:22','01:22'],
+      ['OSMANGAZİ','06:09','23:24','01:24'],
+      ['FATİH','06:11','23:26','01:26'],
+      ['ÇAYIROVA','06:13','23:28','01:28'],
+      ['TUZLA','06:03','23:32','01:32'],
+      ['İÇMELER','06:06','23:35','01:35'],
+      ['AYDINTEPESİ','06:08','23:37','01:37'],
+      ['GÜZELYALİ','06:10','23:39','01:39'],
+      ['TERSANE','06:12','23:41','01:41'],
+      ['KAYNARCA','06:14','23:43','01:43'],
+      ['PENDİK','06:02','23:46','01:46'],
+      ['YUNUS','06:05','23:49','01:49'],
+      ['KARTAL','06:08','23:52','01:52'],
+      ['BAŞAK','06:10','23:54','01:54'],
+      ['ATALAR','06:12','23:56','01:56'],
+      ['CEVİZLİ','06:14','23:58','01:58'],
+      ['MALTEPE','06:02','00:01','02:01'],
+      ['SÜREYYA PLAJI','06:04','00:03','02:03'],
+      ['İDEALTEPE','06:06','00:05','02:05'],
+      ['KÜÇÜKYALI','06:08','00:07','02:07'],
+      ['BOSTANCI','06:11','00:10','02:10'],
+      ['SUADİYE','06:13','00:12','02:12'],
+      ['ERENKÖY','06:00','00:15','02:15'],
+      ['GÖZTEPE','06:02','00:17','02:17'],
+      ['FENERYOLU','06:04','00:19','02:19'],
+      ['SÖĞÜTLÜÇEŞME','06:07','00:22','02:22'],
+      ['AYRILIKÇEŞMESİ','06:10','00:25','02:25'],
+      ['ÜSKÜDAR','05:59','00:29','02:29'],
+      ['SİRKECİ','06:03','00:33','02:33'],
+      ['YENİKAPI','06:06','00:36','02:36'],
+      ['KAZLIÇEŞMESİ','06:10','00:40','02:40'],
+      ['ZEYTİNBURNU','06:12','00:42','02:42'],
+      ['YENİMAHALLE','06:02','00:45','02:45'],
+      ['BAKIRKÖY','06:04','00:47','02:47'],
+      ['ATAKÖY','06:06','00:49','02:49'],
+      ['YEŞİLYURT','06:09','00:52','02:52'],
+      ['YEŞİLKÖY','06:11','00:54','02:54'],
+      ['FLORYA AKVARYUM','06:14','00:57','02:57'],
+      ['FLORYA','06:16','00:59','02:59'],
+      ['KÜÇÜKÇEKMECE','06:19','01:02','03:02'],
+      ['MUSTAFA KEMAL','06:22','01:05','03:05'],
+      ['HALKALI','--','--','--'],
+    ],
+    gebzeYonu: [
+      ['HALKALI','05:58','23:28','01:28'],
+      ['MUSTAFA KEMAL','06:01','23:31','01:31'],
+      ['KÜÇÜKÇEKMECE','06:03','23:33','01:33'],
+      ['FLORYA','06:06','23:36','01:36'],
+      ['FLORYA AKVARYUM','06:08','23:38','01:38'],
+      ['YEŞİLKÖY','06:11','23:41','01:41'],
+      ['YEŞİLYURT','06:13','23:43','01:43'],
+      ['ATAKÖY','06:02','23:46','01:46'],
+      ['BAKIRKÖY','06:05','23:49','01:49'],
+      ['YENİMAHALLE','06:07','23:51','01:51'],
+      ['ZEYTİNBURNU','06:10','23:54','01:54'],
+      ['KAZLIÇEŞMESİ','06:12','23:56','01:56'],
+      ['YENİKAPI','06:00','00:00','02:00'],
+      ['SİRKECİ','06:03','00:03','02:03'],
+      ['ÜSKÜDAR','06:07','00:07','02:07'],
+      ['AYRILIKÇEŞMESİ','06:11','00:11','02:11'],
+      ['SÖĞÜTLÜÇEŞME','06:00','00:14','02:14'],
+      ['FENERYOLU','06:02','00:16','02:16'],
+      ['GÖZTEPE','06:04','00:18','02:18'],
+      ['ERENKÖY','06:06','00:20','02:20'],
+      ['SUADİYE','06:09','00:23','02:23'],
+      ['BOSTANCI','06:11','00:25','02:25'],
+      ['KÜÇÜKYALI','06:14','00:28','02:28'],
+      ['İDEALTEPE','06:00','00:30','02:30'],
+      ['SÜREYYA PLAJI','06:02','00:32','02:32'],
+      ['MALTEPE','06:04','00:34','02:34'],
+      ['CEVİZLİ','06:07','00:37','02:37'],
+      ['ATALAR','06:09','00:39','02:39'],
+      ['BAŞAK','06:11','00:41','02:41'],
+      ['KARTAL','06:13','00:43','02:43'],
+      ['YUNUS','06:02','00:46','02:46'],
+      ['PENDİK','06:05','00:49','02:49'],
+      ['KAYNARCA','06:08','00:52','02:52'],
+      ['TERSANE','06:10','00:54','02:54'],
+      ['GÜZELYALİ','06:12','00:56','02:56'],
+      ['AYDINTEPESİ','06:14','00:58','02:58'],
+      ['İÇMELER','06:16','01:00','03:00'],
+      ['TUZLA','06:19','01:01','03:01'],
+      ['ÇAYIROVA','06:25','01:09','03:09'],
+      ['FATİH','06:27','01:11','03:11'],
+      ['OSMANGAZİ','06:29','01:11','03:11'],
+      ['DARICA','06:29','01:11','03:11'],
+      ['GEBZE','--','--','--'],
+    ],
+    atakoyYonu: [
+      ['PENDİK','06:09','20:39'],
+      ['YUNUS','06:12','20:42'],
+      ['KARTAL','06:00','20:45'],
+      ['BAŞAK','06:02','20:47'],
+      ['ATALAR','06:04','20:49'],
+      ['CEVİZLİ','06:06','20:51'],
+      ['MALTEPE','06:09','20:54'],
+      ['SÜREYYA PLAJI','06:11','20:56'],
+      ['İDEALTEPE','06:13','20:58'],
+      ['KÜÇÜKYALI','06:00','21:00'],
+      ['BOSTANCI','06:03','21:03'],
+      ['SUADİYE','06:05','21:05'],
+      ['ERENKÖY','06:08','21:08'],
+      ['GÖZTEPE','06:10','21:10'],
+      ['FENERYOLU','06:12','21:12'],
+      ['SÖĞÜTLÜÇEŞME','06:00','21:15'],
+      ['AYRILIKÇEŞMESİ','06:03','21:18'],
+      ['ÜSKÜDAR','06:07','21:22'],
+      ['SİRKECİ','06:11','21:26'],
+      ['YENİKAPI','05:59','21:29'],
+      ['KAZLIÇEŞMESİ','06:03','21:33'],
+      ['ZEYTİNBURNU','06:05','21:35'],
+      ['YENİMAHALLE','06:08','21:38'],
+      ['BAKIRKÖY','06:10','21:40'],
+      ['ATAKÖY','--','--'],
+    ],
+    pendikYonu: [
+      ['ATAKÖY','06:09','21:54'],
+      ['BAKIRKÖY','06:12','21:57'],
+      ['YENİMAHALLE','06:14','21:59'],
+      ['ZEYTİNBURNU','06:01','22:02'],
+      ['KAZLIÇEŞMESİ','06:03','22:04'],
+      ['YENİKAPI','06:07','22:08'],
+      ['SİRKECİ','06:10','22:11'],
+      ['ÜSKÜDAR','06:00','22:15'],
+      ['AYRILIKÇEŞMESİ','06:04','22:19'],
+      ['SÖĞÜTLÜÇEŞME','06:07','22:22'],
+      ['FENERYOLU','06:09','22:24'],
+      ['GÖZTEPE','06:11','22:26'],
+      ['ERENKÖY','06:13','22:28'],
+      ['SUADİYE','06:01','22:31'],
+      ['BOSTANCI','06:03','22:33'],
+      ['KÜÇÜKYALI','06:06','22:36'],
+      ['İDEALTEPE','06:08','22:38'],
+      ['SÜREYYA PLAJI','06:10','22:40'],
+      ['MALTEPE','06:12','22:42'],
+      ['CEVİZLİ','06:00','22:45'],
+      ['ATALAR','06:02','22:47'],
+      ['BAŞAK','06:04','22:49'],
+      ['KARTAL','06:06','22:51'],
+      ['YUNUS','06:09','22:54'],
+      ['PENDİK','--','--'],
+    ],
+    zeytinburnuSon: [
+      ['PENDİK','22:39'],
+      ['YUNUS','22:42'],
+      ['KARTAL','22:45'],
+      ['BAŞAK','22:47'],
+      ['ATALAR','22:49'],
+      ['CEVİZLİ','22:51'],
+      ['MALTEPE','22:54'],
+      ['SÜREYYA PLAJI','22:56'],
+      ['İDEALTEPE','22:58'],
+      ['KÜÇÜKYALI','23:00'],
+      ['BOSTANCI','23:03'],
+      ['SUADİYE','23:05'],
+      ['ERENKÖY','23:08'],
+      ['GÖZTEPE','23:10'],
+      ['FENERYOLU','23:12'],
+      ['SÖĞÜTLÜÇEŞME','23:15'],
+      ['AYRILIKÇEŞMESİ','23:18'],
+      ['ÜSKÜDAR','23:22'],
+      ['SİRKECİ','23:26'],
+      ['YENİKAPI','23:29'],
+      ['KAZLIÇEŞMESİ','23:33'],
+      ['ZEYTİNBURNU','--'],
+    ],
+  };
+
+window.M11_DATA = {
+    interval: 15,
+    stationOrder: [
+      'Gayrettepe', 'Kâğıthane', 'Hasdal-Üniversite', 'Kemerburgaz', 'Göktürk',
+      'İhsaniye', 'İstanbul Havalimanı', 'Kargo Terminali', 'Taşoluk',
+      'Arnavutköy-Hastane', 'İbni Haldun Üniversitesi', 'Kayaşehir',
+      'Olimpiyatköy', 'Halkalı Stadı', 'Halkalı',
+    ],
+    sections: [
+      {
+        title: 'HALKALI YÖNÜ',
+        terminalName: 'Halkalı',
+        rows: [
+          ['Gayrettepe', '05:58', '23:58'],
+          ['Kâğıthane', '06:02', '00:02'],
+          ['Hasdal-Üniversite', '06:07', '00:07'],
+          ['Kemerburgaz', '06:12', '00:12'],
+          ['Göktürk', '06:00', '00:15'],
+          ['İhsaniye', '06:08', '00:23'],
+          ['İstanbul Havalimanı', '06:14', '00:29'],
+          ['Kargo Terminali', '06:17', '00:32'],
+          ['Taşoluk', '06:07', '00:37'],
+          ['Arnavutköy-Hastane', '06:11', '00:41'],
+          ['İbni Haldun Üniversitesi', '06:17', '00:47'],
+          ['Kayaşehir', '06:06', '00:51'],
+          ['Olimpiyatköy', '06:10', '00:55'],
+          ['Halkalı Stadı', '06:13', '00:58'],
+          ['Halkalı', '--', '--'],
+        ],
+      },
+      {
+        title: 'GAYRETTEPE YÖNÜ',
+        terminalName: 'Gayrettepe',
+        rows: [
+          ['Halkalı', '06:03', '23:48'],
+          ['Halkalı Stadı', '06:07', '23:52'],
+          ['Olimpiyatköy', '06:10', '23:55'],
+          ['Kayaşehir', '06:01', '23:59'],
+          ['İbni Haldun Üniversitesi', '06:05', '00:03'],
+          ['Arnavutköy-Hastane', '06:11', '00:09'],
+          ['Taşoluk', '06:15', '00:13'],
+          ['Kargo Terminali', '06:07', '00:18'],
+          ['İstanbul Havalimanı', '06:10', '00:21'],
+          ['İhsaniye', '06:16', '00:27'],
+          ['Göktürk', '06:07', '00:35'],
+          ['Kemerburgaz', '06:10', '00:38'],
+          ['Hasdal-Üniversite', '06:15', '00:43'],
+          ['Kâğıthane', '06:05', '00:48'],
+          ['Gayrettepe', '--', '--'],
+        ],
+      },
+    ],
+  };
+
+(() => {
+  const STORAGE_KEY = 'kam-theme';
+
+  function getStoredTheme() {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function getSystemTheme() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.textContent = theme === 'dark' ? '☀️ Açık Mod' : '🌙 Koyu Mod';
+    }
+  }
+
+  function setTheme(theme) {
+    try {
+      localStorage.setItem(STORAGE_KEY, theme);
+    } catch (e) {
+      
+    }
+    applyTheme(theme);
+  }
+
+  function toggleTheme() {
+    const current = document.documentElement.dataset.theme || getSystemTheme();
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  }
+
+  function initTheme() {
+    const stored = getStoredTheme();
+    applyTheme(stored || getSystemTheme());
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.addEventListener('click', toggleTheme);
+  }
+
+  window.KAM_THEME = { initTheme, toggleTheme, setTheme };
+})();
+
+
+(() => {
+  function toMinutes(hhmm) {
+    if (!hhmm || hhmm === '--') return null;
+    const [h, m] = String(hhmm).split(':').map(Number);
+    if (Number.isNaN(h) || Number.isNaN(m)) return null;
+    return h * 60 + m;
+  }
+
+  function formatMinutes(mins) {
+    const actual = ((mins % 1440) + 1440) % 1440;
+    const h = Math.floor(actual / 60).toString().padStart(2, '0');
+    const m = (actual % 60).toString().padStart(2, '0');
+    return `${h}:${m}`;
+  }
+
+  function isWeekendTR(date = railwayNow()) {
+    const effective = new Date(date);
+    if (effective.getHours() < 6) effective.setDate(effective.getDate() - 1);
+    const day = effective.getDay();
+    return day === 5 || day === 6;
+  }
+
+  function buildIntervalSeries({ first, last, interval }) {
+    const firstMins = toMinutes(first);
+    const lastMins = toMinutes(last);
+    if (firstMins === null || lastMins === null) return [];
+    const intervalFn = typeof interval === 'function' ? interval : () => interval;
+    const lastAbs = lastMins < firstMins ? lastMins + 1440 : lastMins;
+    const series = [];
+    let t = firstMins;
+    let guard = 0;
+    while (t < lastAbs && guard < 500) {
+      series.push({ str: formatMinutes(t), absMins: t });
+      t += intervalFn(t % 1440) || 15;
+      guard += 1;
+    }
+    series.push({ str: last, absMins: lastAbs });
+    return series;
+  }
+
+  function toExplicitSeries(rawTimes) {
+    let dayOffset = 0;
+    let prev = null;
+    const series = [];
+    (rawTimes || []).forEach((raw) => {
+      const mins = toMinutes(raw);
+      if (mins === null) return;
+      if (prev !== null && mins < prev) dayOffset += 1440;
+      prev = mins;
+      series.push({ str: raw, absMins: mins + dayOffset });
+    });
+    return series;
+  }
+
+  function getNowAdj(series, nowMins) {
+    if (!series.length) return nowMins;
+    const firstClock = series[0].absMins % 1440;
+    const lastAbs = series[series.length - 1].absMins;
+    return lastAbs >= 1440 && nowMins <= lastAbs - 1440 && nowMins < firstClock ? nowMins + 1440 : nowMins;
+  }
+
+  function getNextDeparture(series, nowMins) {
+    if (!series.length) return null;
+    const nowAdj = getNowAdj(series, nowMins);
+    const idx = series.findIndex((d) => d.absMins >= nowAdj);
+    if (idx === -1) return null;
+    return { str: series[idx].str, absMins: series[idx].absMins, remaining: series[idx].absMins - nowAdj, index: idx };
+  }
+
+  function computeIntervalSummary(series) {
+    const segments = [];
+    let startIdx = 0;
+    let currentDelta = null;
+    for (let i = 0; i < series.length - 1; i += 1) {
+      const delta = series[i + 1].absMins - series[i].absMins;
+      if (delta <= 0 || delta > 90) continue;
+      if (currentDelta === null) {
+        currentDelta = delta;
+        startIdx = i;
+      } else if (delta !== currentDelta) {
+        segments.push({ start: series[startIdx].str, end: series[i].str, delta: currentDelta });
+        startIdx = i;
+        currentDelta = delta;
+      }
+    }
+    if (currentDelta !== null) {
+      segments.push({ start: series[startIdx].str, end: series[series.length - 1].str, delta: currentDelta });
+    }
+    return segments;
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function renderScheduleWidget(container, { title, series, nowMins, terminalMessage, showSummary, lastValueHtml, firstValueHtml, allLabel, hideAllList, hideFirstLast, hideNext }) {
+    if (!container) return;
+
+    if (terminalMessage) {
+      container.innerHTML = `
+        <div class="sched-widget">
+          ${title ? `<div class="sched-title">${escapeHtml(title)}</div>` : ''}
+          <p class="sched-empty">${escapeHtml(terminalMessage)}</p>
+        </div>`;
+      return;
+    }
+
+    if (!series || !series.length) {
+      container.innerHTML = `
+        <div class="sched-widget">
+          ${title ? `<div class="sched-title">${escapeHtml(title)}</div>` : ''}
+          <p class="sched-empty">Bu yönde sefer bilgisi bulunamadı.</p>
+        </div>`;
+      return;
+    }
+
+    const nowAdj = getNowAdj(series, nowMins);
+    const next = getNextDeparture(series, nowMins);
+
+    const nextHtml = next
+      ? `<div class="sched-next">
+          <div class="sched-next-label">Sonraki Tren</div>
+          <div class="sched-next-time">${next.str} <span class="sched-next-remaining">${next.remaining} dk sonra</span></div>
+        </div>`
+      : `<div class="sched-ended">🚫 Bu istasyondan seferler sona erdi</div>`;
+
+    const summary = showSummary ? computeIntervalSummary(series) : [];
+    const summaryHtml = summary.length
+      ? `<div class="sched-all-label">Sefer Sıklığı</div>
+         <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;">
+           ${summary.map((s) => `
+             <div class="kv-item">
+               <span>${s.start} - ${s.end}</span>
+               <div>${s.delta} dk arayla</div>
+             </div>`).join('')}
+         </div>`
+      : '';
+
+    container.innerHTML = `
+      <div class="sched-widget">
+        ${title ? `<div class="sched-title">${escapeHtml(title)}</div>` : ''}
+        ${hideNext ? '' : nextHtml}
+        ${hideFirstLast ? '' : `
+        <div class="sched-firstlast">
+          <div class="sched-firstlast-item">
+            <div class="sched-firstlast-label">İLK SEFER</div>
+            <div class="sched-firstlast-value is-first">${firstValueHtml || series[0].str}</div>
+          </div>
+          <div class="sched-firstlast-item">
+            <div class="sched-firstlast-label">SON SEFER</div>
+            <div class="sched-firstlast-value is-last">${lastValueHtml || series[series.length - 1].str}</div>
+          </div>
+        </div>`}
+        ${hideAllList ? '' : `
+        <div class="sched-all-label">Tüm Seferler${allLabel ? ` <span class="sched-all-label-sub">(${escapeHtml(allLabel)})</span>` : ''}</div>
+        <div class="sched-pills">
+          ${series.map((d, idx) => {
+            const isPast = d.absMins < nowAdj;
+            const isNext = next && idx === next.index;
+            const cls = ['sched-pill', isPast ? 'is-past' : '', isNext ? 'is-next' : ''].filter(Boolean).join(' ');
+            return `<span class="${cls}">${d.str}</span>`;
+          }).join('')}
+        </div>`}
+        ${summaryHtml}
+      </div>`;
+  }
+
+  function buildScheduleTable(el, headers, rows) {
+    if (!el) return;
+    const th = headers.map((h) => `<th>${escapeHtml(h)}</th>`).join('');
+    const tb = rows.map((r) => `<tr>${r.map((c) => `<td>${escapeHtml(c)}</td>`).join('')}</tr>`).join('');
+    el.innerHTML = `<thead><tr>${th}</tr></thead><tbody>${tb}</tbody>`;
+  }
+
+  function createLineWidget(config) {
+    const { selectEl, stations, directions, refreshMs = 60000 } = config;
+    if (!selectEl) return null;
+
+    function populate() {
+      selectEl.innerHTML = '<option value="">— İstasyon Seçin —</option>' +
+        stations.map((s) => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+    }
+
+    function render() {
+      const station = selectEl.value;
+      const nowMins = (() => {
+        const now = railwayNow();
+        return now.getHours() * 60 + now.getMinutes();
+      })();
+
+      directions.forEach((dir) => {
+        if (!dir.container) return;
+        if (!station) {
+          dir.container.innerHTML = '<p class="sched-empty">Lütfen istasyon seçin.</p>';
+          return;
+        }
+        if (dir.terminalName && station === dir.terminalName) {
+          renderScheduleWidget(dir.container, { title: dir.title, terminalMessage: `${dir.terminalName} bu yönün son durağı.` });
+          return;
+        }
+        const result = dir.getSeries(station);
+        renderScheduleWidget(dir.container, {
+          title: dir.title,
+          series: result ? result.series : [],
+          showSummary: result ? result.showSummary : false,
+          nowMins,
+        });
+      });
+    }
+
+    populate();
+    selectEl.addEventListener('change', render);
+    render();
+    setInterval(render, refreshMs);
+    return { render };
+  }
+
+  window.ScheduleEngine = {
+    toMinutes,
+    formatMinutes,
+    isWeekendTR,
+    buildIntervalSeries,
+    toExplicitSeries,
+    getNextDeparture,
+    computeIntervalSummary,
+    renderScheduleWidget,
+    buildScheduleTable,
+    createLineWidget,
+  };
+})();
+
+(() => {
+  const SE = window.ScheduleEngine;
+
+  function allStations(rows) {
+    const list = [];
+    rows.forEach((r) => { if (r[0] && r[0] !== '--' && !list.includes(r[0])) list.push(r[0]); });
+    return list;
+  }
+
+  function seriesForRow(row, isWeekend) {
+    if (!row) return null;
+    const first = row[1];
+    const iciLast = row[2];
+    if (!first || !iciLast || first === '--' || iciLast === '--') return null;
+    const phase1 = SE.buildIntervalSeries({ first, last: iciLast, interval: 15 });
+    if (!isWeekend) return phase1;
+    const sonuLast = row[3];
+    if (!sonuLast || sonuLast === '--' || sonuLast === iciLast) return phase1;
+    const phase2 = SE.buildIntervalSeries({ first: iciLast, last: sonuLast, interval: 30 });
+    return [...phase1, ...phase2.slice(1)];
+  }
+
+  function earlierTime(a, b) {
+    if (!a || a === '--') return b && b !== '--' ? b : null;
+    if (!b || b === '--') return a;
+    return SE.toMinutes(b) < SE.toMinutes(a) ? b : a;
+  }
+
+  function appendShuttleNote(container, hasEkSefer) {
+    if (!container) return;
+    const widget = container.querySelector('.sched-widget');
+    if (!widget) return;
+    const note = document.createElement('div');
+    note.className = 'sched-shuttle-note';
+    note.textContent = hasEkSefer ? 'Ek Ataköy–Pendik seferleri de bu listeye dahildir' : ' ';
+    const titleEl = widget.querySelector('.sched-title');
+    if (titleEl) titleEl.insertAdjacentElement('afterend', note);
+    else widget.insertBefore(note, widget.firstChild);
+  }
+
+  function seriesForShuttleRow(row, extendedLast) {
+    if (!row) return null;
+    const first = row[1];
+    const last = (extendedLast && extendedLast !== '--') ? extendedLast : row[2];
+    if (!first || !last || first === '--' || last === '--') return null;
+    return SE.buildIntervalSeries({ first, last, interval: 15 });
+  }
+
+  function mergeSeries(a, b) {
+    if (!a || !a.length) return b || [];
+    if (!b || !b.length) return a;
+    const merged = [...a, ...b].sort((x, y) => x.absMins - y.absMins);
+    const deduped = [];
+    merged.forEach((item) => {
+      if (!deduped.length || deduped[deduped.length - 1].absMins !== item.absMins) {
+        deduped.push(item);
+      }
+    });
+    return deduped;
+  }
+
+  function nowMinutes() {
+    const n = railwayNow();
+    return n.getHours() * 60 + n.getMinutes();
+  }
+
+  function buildLastVariantsHtml(row) {
+    const ici = row && row[2] && row[2] !== '--' ? row[2] : '—';
+    const sonu = row && row[3] && row[3] !== '--' ? row[3] : '—';
+    return `
+      <div class="sched-last-variants">
+        <div class="variant-row"><span class="variant-time">${ici}</span><span class="variant-label">Hafta İçi</span></div>
+        <div class="variant-row"><span class="variant-time">${sonu}</span><span class="variant-label">Hafta Sonu</span></div>
+      </div>`;
+  }
+
+  function renderStaticTables(data) {
+    SE.buildScheduleTable(
+      document.getElementById('marmaray-halkali-table'),
+      ['İSTASYON', 'İLK TREN', 'SON TREN', 'HFTASONU SON'],
+      data.halkaliYonu
+    );
+    SE.buildScheduleTable(
+      document.getElementById('marmaray-gebze-table'),
+      ['İSTASYON', 'İLK TREN', 'SON TREN', 'HFTASONU SON'],
+      data.gebzeYonu
+    );
+    SE.buildScheduleTable(
+      document.getElementById('marmaray-atakoy-table'),
+      ['İSTASYON', 'İLK TREN', 'SON TREN'],
+      data.atakoyYonu
+    );
+    SE.buildScheduleTable(
+      document.getElementById('marmaray-pendik-table'),
+      ['İSTASYON', 'İLK TREN', 'SON TREN'],
+      data.pendikYonu
+    );
+    SE.buildScheduleTable(
+      document.getElementById('marmaray-zeytinburnu-table'),
+      ['İSTASYON', 'SON TREN'],
+      data.zeytinburnuSon
+    );
+  }
+
+  function initStationSearch(data) {
+    const select = document.getElementById('mrm-station');
+    const result = document.getElementById('mrm-result');
+    if (!select || !result) return;
+
+    const stations = allStations([...data.halkaliYonu, ...data.gebzeYonu]);
+    select.innerHTML = '<option value="">— Seçin —</option>' +
+      stations.map((s) => `<option value="${s}">${s}</option>`).join('');
+
+    function render() {
+      const station = select.value;
+      result.style.display = 'block';
+      if (!station) {
+        result.innerHTML = '<p class="sched-empty">Lütfen istasyon seçin.</p>';
+        return;
+      }
+
+      const isWeekend = SE.isWeekendTR();
+
+      const halkaliRow = data.halkaliYonu.find((r) => r[0] === station);
+      const gebzeRow = data.gebzeYonu.find((r) => r[0] === station);
+      const atakoyRow = data.atakoyYonu.find((r) => r[0] === station);
+      const pendikRow = data.pendikYonu.find((r) => r[0] === station);
+      const zeytinburnuRow = data.zeytinburnuSon.find((r) => r[0] === station);
+
+      const halkaliShuttleSeries = seriesForShuttleRow(atakoyRow, zeytinburnuRow && zeytinburnuRow[1]);
+      const gebzeShuttleSeries = seriesForShuttleRow(pendikRow);
+      const halkaliSeries = mergeSeries(seriesForRow(halkaliRow, isWeekend), halkaliShuttleSeries);
+      const gebzeSeries = mergeSeries(seriesForRow(gebzeRow, isWeekend), gebzeShuttleSeries);
+
+      result.innerHTML = `
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
+          <div id="mrm-result-halkali"></div>
+          <div id="mrm-result-gebze"></div>
+        </div>`;
+
+      SE.renderScheduleWidget(document.getElementById('mrm-result-halkali'), {
+        title: 'Halkalı Yönü',
+        series: halkaliSeries,
+        nowMins: nowMinutes(),
+        terminalMessage: (!halkaliRow || halkaliRow[1] === '--') ? 'Bu yönün son durağı.' : undefined,
+        lastValueHtml: buildLastVariantsHtml(halkaliRow),
+        allLabel: halkaliShuttleSeries ? 'Halkalı-Gebze + Ataköy-Pendik' : 'Halkalı-Gebze Hattı',
+      });
+      appendShuttleNote(document.getElementById('mrm-result-halkali'), !!halkaliShuttleSeries);
+
+      SE.renderScheduleWidget(document.getElementById('mrm-result-gebze'), {
+        title: 'Gebze Yönü',
+        series: gebzeSeries,
+        nowMins: nowMinutes(),
+        terminalMessage: (!gebzeRow || gebzeRow[1] === '--') ? 'Bu yönün son durağı.' : undefined,
+        lastValueHtml: buildLastVariantsHtml(gebzeRow),
+        allLabel: gebzeShuttleSeries ? 'Halkalı-Gebze + Ataköy-Pendik' : 'Halkalı-Gebze Hattı',
+      });
+      appendShuttleNote(document.getElementById('mrm-result-gebze'), !!gebzeShuttleSeries);
+    }
+
+    select.addEventListener('change', render);
+    render();
+    setInterval(render, 60000);
+  }
+
+  function initRouteSearch(data) {
+    const binisSel = document.getElementById('mrm-v2-binis');
+    const inisSel = document.getElementById('mrm-v2-inis');
+    const result = document.getElementById('mrm-v2-result');
+    if (!binisSel || !inisSel || !result) return;
+
+    const stations = allStations([...data.halkaliYonu, ...data.gebzeYonu]);
+    [binisSel, inisSel].forEach((sel) => {
+      sel.innerHTML = '<option value="">— Seçin —</option>' +
+        stations.map((s) => `<option value="${s}">${s}</option>`).join('');
+    });
+
+    function render() {
+      const binis = binisSel.value;
+      const inis = inisSel.value;
+
+      if (!binis || !inis) {
+        result.style.display = binis || inis ? 'block' : 'none';
+        result.innerHTML = '<p class="sched-empty">Biniş ve iniş istasyonunu seçin.</p>';
+        return;
+      }
+      if (binis === inis) {
+        result.style.display = 'block';
+        result.innerHTML = '<p class="sched-empty">Biniş ve iniş istasyonu aynı olamaz.</p>';
+        return;
+      }
+
+      const hY = data.halkaliYonu;
+      const gY = data.gebzeYonu;
+      const hB = hY.findIndex((r) => r[0] === binis);
+      const hI = hY.findIndex((r) => r[0] === inis);
+      const gB = gY.findIndex((r) => r[0] === binis);
+      const gI = gY.findIndex((r) => r[0] === inis);
+
+      let row = null;
+      let yon = '';
+      if (hB !== -1 && hI !== -1 && hB < hI) { row = hY[hB]; yon = 'Halkalı Yönü'; }
+      else if (gB !== -1 && gI !== -1 && gB < gI) { row = gY[gB]; yon = 'Gebze Yönü'; }
+
+      result.style.display = 'block';
+      if (!row) {
+        result.innerHTML = `<p class="sched-empty">⚠️ ${binis} → ${inis} güzergahı belirlenemedi. İstasyonları kontrol edin.</p>`;
+        return;
+      }
+
+      const isWeekend = SE.isWeekendTR();
+
+      const shuttleTable = yon === 'Halkalı Yönü' ? data.atakoyYonu : data.pendikYonu;
+      const shuttleRow = shuttleTable.find((r) => r[0] === binis);
+      const zeytinburnuIdx = hY.findIndex((r) => r[0] === 'ZEYTİNBURNU');
+      const inisWithinZeytinburnu = yon === 'Halkalı Yönü' && zeytinburnuIdx !== -1 && hI <= zeytinburnuIdx;
+      const zeytinburnuRow = inisWithinZeytinburnu ? data.zeytinburnuSon.find((r) => r[0] === binis) : null;
+      const shuttleSeries = seriesForShuttleRow(shuttleRow, zeytinburnuRow && zeytinburnuRow[1]);
+      const mergedSeries = mergeSeries(seriesForRow(row, isWeekend), shuttleSeries);
+
+      result.innerHTML = `
+        <div class="subtitle">${binis} → ${inis} · ${yon}</div>
+        <div id="mrm-v2-result-widget"></div>`;
+
+      SE.renderScheduleWidget(document.getElementById('mrm-v2-result-widget'), {
+        series: mergedSeries,
+        nowMins: nowMinutes(),
+        lastValueHtml: buildLastVariantsHtml(row),
+        allLabel: shuttleSeries ? 'Halkalı-Gebze + Ataköy-Pendik' : 'Halkalı-Gebze Hattı',
+      });
+      appendShuttleNote(document.getElementById('mrm-v2-result-widget'), !!shuttleSeries);
+    }
+
+    binisSel.addEventListener('change', render);
+    inisSel.addEventListener('change', render);
+    setInterval(render, 60000);
+  }
+
+  function initSegmented() {
+    const scope = document.getElementById('screen-marmaray');
+    if (!scope) return;
+    const buttons = scope.querySelectorAll('.segmented-btn');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        scope.querySelectorAll('.segment-panel').forEach((p) => p.classList.remove('active'));
+        const target = document.getElementById(btn.dataset.target);
+        if (target) target.classList.add('active');
+      });
+    });
+  }
+
+  function initMarmaray() {
+    const data = window.MARMARAY;
+    if (!data) return;
+    renderStaticTables(data);
+    initStationSearch(data);
+    initRouteSearch(data);
+    initSegmented();
+  }
+
+  window.initMarmaray = initMarmaray;
+})();
+
+(() => {
+  const SE = window.ScheduleEngine;
+
+  function nowMinutes() {
+    const n = railwayNow();
+    return n.getHours() * 60 + n.getMinutes();
+  }
+
+  function initStationSearch(data) {
+    const select = document.getElementById('m11-station');
+    if (!select) return;
+
+    const containerIds = ['m11-halkali-widget', 'm11-gayrettepe-widget'];
+
+    SE.createLineWidget({
+      selectEl: select,
+      stations: data.stationOrder,
+      directions: data.sections.map((sec, idx) => ({
+        title: sec.title,
+        terminalName: sec.terminalName,
+        container: document.getElementById(containerIds[idx]),
+        getSeries(station) {
+          const row = sec.rows.find((r) => r[0] === station);
+          if (!row) return null;
+          return { series: SE.buildIntervalSeries({ first: row[1], last: row[2], interval: data.interval }) };
+        },
+      })),
+    });
+  }
+
+  function initRouteSearch(data) {
+    const binisSel = document.getElementById('m11-route-binis');
+    const inisSel = document.getElementById('m11-route-inis');
+    const result = document.getElementById('m11-route-result');
+    if (!binisSel || !inisSel || !result) return;
+
+    [binisSel, inisSel].forEach((sel) => {
+      sel.innerHTML = '<option value="">— Seçin —</option>' +
+        data.stationOrder.map((s) => `<option value="${s}">${s}</option>`).join('');
+    });
+
+    function render() {
+      const binis = binisSel.value;
+      const inis = inisSel.value;
+
+      if (!binis || !inis) {
+        result.style.display = binis || inis ? 'block' : 'none';
+        result.innerHTML = '<p class="sched-empty">Biniş ve iniş istasyonunu seçin.</p>';
+        return;
+      }
+      if (binis === inis) {
+        result.style.display = 'block';
+        result.innerHTML = '<p class="sched-empty">Biniş ve iniş istasyonu aynı olamaz.</p>';
+        return;
+      }
+
+      let row = null;
+      let title = '';
+      data.sections.forEach((sec) => {
+        if (row) return;
+        const binisIdx = sec.rows.findIndex((r) => r[0] === binis);
+        const inisIdx = sec.rows.findIndex((r) => r[0] === inis);
+        if (binisIdx !== -1 && inisIdx !== -1 && binisIdx < inisIdx) {
+          row = sec.rows[binisIdx];
+          title = sec.title;
+        }
+      });
+
+      result.style.display = 'block';
+      if (!row) {
+        result.innerHTML = `<p class="sched-empty">⚠️ ${binis} → ${inis} güzergahı belirlenemedi. İstasyonları kontrol edin.</p>`;
+        return;
+      }
+
+      result.innerHTML = `<div class="subtitle">${binis} → ${inis} · ${title}</div><div id="m11-route-widget"></div>`;
+      SE.renderScheduleWidget(document.getElementById('m11-route-widget'), {
+        series: SE.buildIntervalSeries({ first: row[1], last: row[2], interval: data.interval }),
+        nowMins: nowMinutes(),
+      });
+    }
+
+    binisSel.addEventListener('change', render);
+    setInterval(render, 60000);
+    inisSel.addEventListener('change', render);
+    setInterval(render, 60000);
+  }
+
+  function initSegmented() {
+    const scope = document.getElementById('screen-m11');
+    if (!scope) return;
+    const buttons = scope.querySelectorAll('.segmented-btn');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        scope.querySelectorAll('.segment-panel').forEach((p) => p.classList.remove('active'));
+        const target = document.getElementById(btn.dataset.target);
+        if (target) target.classList.add('active');
+      });
+    });
+  }
+
+  function initM11() {
+    const data = window.M11_DATA;
+    if (!data) return;
+    initStationSearch(data);
+    initRouteSearch(data);
+    initSegmented();
+  }
+
+  window.initM11 = initM11;
+})();
+
+(() => {
+  const SE = window.ScheduleEngine;
+
+  function getStations(pagesA, pagesB) {
+    const order = [];
+    [...pagesA, ...pagesB].forEach((page) => {
+      (page.rows || []).forEach((row) => {
+        const station = row[0];
+        if (station && !order.includes(station)) order.push(station);
+      });
+    });
+    return order;
+  }
+
+  function collectTimes(pages, station) {
+    const raw = [];
+    pages.forEach((page) => {
+      const row = (page.rows || []).find((r) => r[0] === station);
+      if (!row) return;
+      raw.push(...row.slice(1).filter((v) => v && String(v).trim() !== ''));
+    });
+    return raw;
+  }
+
+  function initBaskentray() {
+    const data = window.EXEL_DATA || {};
+    const select = document.getElementById('baskentray-station');
+    if (!select || !data.kayasSincan || !data.sincanKayas) return;
+
+    const sincanPages = data.kayasSincan.pages || [];
+    const kayasPages = data.sincanKayas.pages || [];
+    const stations = getStations(sincanPages, kayasPages);
+
+    SE.createLineWidget({
+      selectEl: select,
+      stations,
+      directions: [
+        {
+          title: 'Sincan Yönü',
+          terminalName: 'Sincan',
+          container: document.getElementById('baskentray-sincan-widget'),
+          getSeries(station) {
+            const raw = collectTimes(sincanPages, station);
+            if (!raw.length) return null;
+            return { series: SE.toExplicitSeries(raw), showSummary: true };
+          },
+        },
+        {
+          title: 'Kayaş Yönü',
+          terminalName: 'Kayaş',
+          container: document.getElementById('baskentray-kayas-widget'),
+          getSeries(station) {
+            const raw = collectTimes(kayasPages, station);
+            if (!raw.length) return null;
+            return { series: SE.toExplicitSeries(raw), showSummary: true };
+          },
+        },
+      ],
+    });
+  }
+
+  window.initBaskentray = initBaskentray;
+})();
+
+(() => {
+  const SE = window.ScheduleEngine;
+
+  function initSirkeciKazlicesme() {
+    const dataSet = (window.EXEL_DATA || {}).sirkeciKazlicesme;
+    const select = document.getElementById('sk-station');
+    if (!select || !dataSet) return;
+
+    const sections = dataSet.sections || [];
+    const stations = [];
+    sections.forEach((sec) => (sec.rows || []).forEach((r) => {
+      if (r[0] && !stations.includes(r[0])) stations.push(r[0]);
+    }));
+
+    SE.createLineWidget({
+      selectEl: select,
+      stations,
+      directions: [
+        {
+          title: 'Sirkeci Yönü',
+          container: document.getElementById('sk-sirkeci-widget'),
+          getSeries(station) {
+            const row = (sections[0] || {}).rows?.find((r) => r[0] === station);
+            if (!row) return null;
+            return { series: SE.buildIntervalSeries({ first: row[1], last: row[2], interval: 25 }) };
+          },
+        },
+        {
+          title: 'Kazlıçeşme Yönü',
+          container: document.getElementById('sk-kazlicesme-widget'),
+          getSeries(station) {
+            const row = (sections[1] || {}).rows?.find((r) => r[0] === station);
+            if (!row) return null;
+            return { series: SE.buildIntervalSeries({ first: row[1], last: row[2], interval: 25 }) };
+          },
+        },
+      ],
+    });
+  }
+
+  window.initSirkeciKazlicesme = initSirkeciKazlicesme;
+})();
+
+
+(() => {
+ function showScreen(id, updateHash = true) {
+  const target = document.getElementById('screen-' + id);
+  if (!target) { showScreen('home', updateHash); return; }
+  document.querySelectorAll('.screen').forEach(el => el.classList.toggle('active', el === target));
+  document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.screen === id));
+  if (updateHash && location.hash !== '#' + id) location.hash = id;
+  window.scrollTo(0, 0);
+ }
+ document.addEventListener('click', event => {
+  const button = event.target.closest('[data-screen], [data-parent]');
+  if (button) showScreen(button.dataset.screen || button.dataset.parent);
+ });
+ window.addEventListener('hashchange', () => showScreen(location.hash.slice(1) || 'home', false));
+ window.KAM_THEME.initTheme();
+ window.initMarmaray(); window.initM11(); window.initBaskentray(); window.initSirkeciKazlicesme();
+ showScreen(location.hash.slice(1) || 'home', false);
+})();
+
+</script></body></html>
